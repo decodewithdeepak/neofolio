@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-glass bg-white/60 dark:bg-gray-800/60 
+           border border-white/20 dark:border-gray-700/20
+           shadow-glass dark:shadow-glass-dark
+           hover:shadow-glass-hover dark:hover:shadow-glass-hover
+           transition-all duration-500;
+  }
+
+  .glass-button {
+    @apply px-4 py-2 rounded-xl
+           bg-gradient-to-r from-white/50 to-white/30 
+           dark:from-gray-800/50 dark:to-gray-800/30
+           hover:from-primary-500/80 hover:to-secondary-500/80
+           hover:text-white transition-all duration-300;
+  }
+
+  .gradient-text {
+    @apply text-transparent bg-clip-text 
+           bg-gradient-to-r from-primary-500 to-secondary-500;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 relative;
+  }
+
+  .floating-element {
+    @apply animate-float;
+  }
+}
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-primary-500/30 to-secondary-500/30 
+         rounded-full hover:from-primary-500/50 hover:to-secondary-500/50;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  @apply bg-gradient-to-br from-gray-50 to-gray-100 
+         dark:from-gray-900 dark:to-gray-800;
+}
+
+/* Background Effects */
+.blob-effect {
+  @apply absolute rounded-full mix-blend-multiply filter blur-3xl opacity-70
+         animate-blob;
+}
+
+.blob-primary {
+  @apply bg-primary-500/30;
+}
+
+.blob-secondary {
+  @apply bg-secondary-500/30;
+}
+
+/* Modern Card Hover Effects */
+.hover-card-effect {
+  @apply hover:scale-[1.02] hover:-translate-y-1
+         transition-all duration-300 ease-out;
+}
+
+/* Gradient Border */
+.gradient-border {
+  @apply relative before:absolute before:inset-0
+         before:p-[1px] before:bg-gradient-to-r
+         before:from-primary-500 before:to-secondary-500
+         before:rounded-[inherit] before:-z-10
+         before:opacity-0 hover:before:opacity-100
+         before:transition-opacity;
+}
