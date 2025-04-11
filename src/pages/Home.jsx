@@ -68,7 +68,7 @@ const Home = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 opacity-70
                         group-hover:opacity-100 transition-opacity" />
           <span className="relative z-10 flex items-center text-white font-medium">
-            Get Started Free
+            Launch My Portfolio
             <HiArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </span>
         </Link>
@@ -92,7 +92,7 @@ const Home = () => {
         {/* Button content */}
         <span className="relative z-10 flex items-center text-white font-medium">
           <span className="relative">
-            View Examples
+            Inspire Me
             <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500
                          group-hover:w-full transition-all duration-300" />
           </span>
@@ -131,7 +131,7 @@ const Home = () => {
               className="inline-flex items-center px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
             >
               <span className="text-sm text-gray-300 flex items-center gap-2">
-              Build. Share. Shine. With NeoFolio <HiSparkles className="text-yellow-500 animate-pulse" />
+                Build. Share. Shine. With NeoFolio <HiSparkles className="text-yellow-500 animate-pulse" />
               </span>
             </motion.div>
 
@@ -142,7 +142,7 @@ const Home = () => {
                 <span className="relative">
                   <span className="absolute -inset-1 rounded-lg bg-gradient-to-r from-purple-500 to-blue-500 blur-lg opacity-25"></span>
                   <span className="relative bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
-                    Developer Portfolio 
+                    Developer Portfolio
                   </span>
                 </span>
               </span>
