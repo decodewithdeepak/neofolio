@@ -31,8 +31,7 @@ const Footer = () => {
                   <span className="text-white">Folio</span>
                 </span>
                 <span className="flex items-center gap-2 text-sm text-gray-400 mt-1">
-                  Crafted with magic 
-                  <HiSparkles className="text-yellow-500 animate-pulse" />
+                  Crafted with ❤️ by <a href="https://deepakmodi.vercel.app" target="_blank" className="text-purple-400 hover:underline">Deepak Modi</a>
                 </span>
               </div>
             </motion.div>
