@@ -189,7 +189,7 @@ const FeaturesSection = ({ features, isVisible }) => (
   >
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
       <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-        Features that make you stand out
+        Features that make us unique
       </span>
     </h2>
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
