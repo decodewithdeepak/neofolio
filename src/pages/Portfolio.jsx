@@ -83,7 +83,7 @@ const Portfolio = () => {
         const usernameDoc = await getDoc(doc(db, 'usernames', username.toLowerCase()));
         
         if (!usernameDoc.exists()) {
-          throw new Error('Portfolio not found');
+          throw new Error('This user does not exist');
         }
 
         // Get portfolio data using UID
@@ -207,7 +207,7 @@ const Portfolio = () => {
   if (error || !userData) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="backdrop-blur-xl bg-white/10 rounded-xl border border-white/20 p-8 max-w-md w-full text-center mx-4">
+        <div className="backdrop-blur-xl bg-purple-400/10 rounded-xl border border-white/20 p-8 max-w-md w-full text-center mx-4">
           <h1 className="text-4xl font-bold text-white mb-4">
             Portfolio Not Found
           </h1>
