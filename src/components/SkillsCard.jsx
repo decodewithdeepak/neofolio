@@ -38,9 +38,9 @@ const getCardWidth = (count) => {
 const getLogoUrl = async (skillName) => {
   const cleanName = skillName.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '').replace(/\./g, '-dot-').replace(/^-+|-+$/g, '');
   const cdnUrls = [
-    `https://raw.githubusercontent.com/gilbarbara/logos/main/logos/${cleanName}.svg`,
     `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${cleanName}/${cleanName}-original.svg`,
-    `https://api.iconify.design/logos:${cleanName}.svg`,
+    // fallback URLs
+    `https://raw.githubusercontent.com/gilbarbara/logos/main/logos/${cleanName}.svg`,
     `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${cleanName}/${cleanName}-plain.svg`,
     `https://cdn.simpleicons.org/${cleanName}`
   ];
