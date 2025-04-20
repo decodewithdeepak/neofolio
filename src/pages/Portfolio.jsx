@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
@@ -17,7 +17,6 @@ const Portfolio = () => {
   const [error, setError] = useState(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('profile');
-  const [sections, setSections] = useState([{ id: 'profile', label: 'Profile' }]);
   const [isScrolling, setIsScrolling] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const prevActiveSectionRef = useRef(activeSection);
@@ -27,16 +26,11 @@ const Portfolio = () => {
   // Check if device is mobile
   useEffect(() => {
     const checkIfMobile = () => {
-      const mobile = window.innerWidth < 768; // Standard breakpoint for mobile
+      const mobile = window.innerWidth < 768;
       setIsMobile(mobile);
     };
-    
-    // Initial check
     checkIfMobile();
-    
-    // Listen for resize events
     window.addEventListener('resize', checkIfMobile);
-    
     return () => {
       window.removeEventListener('resize', checkIfMobile);
     };
@@ -66,13 +60,9 @@ const Portfolio = () => {
         document.body.classList.add('scrolling');
         setIsScrolling(true);
       }
-      
-      // Clear the timeout if it exists
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
-      // Set a timeout to remove the scrolling class after scrolling stops
       scrollTimeoutRef.current = setTimeout(() => {
         document.body.classList.remove('scrolling');
         setIsScrolling(false);
@@ -80,7 +70,7 @@ const Portfolio = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (scrollTimeoutRef.current) {
@@ -136,9 +126,9 @@ const Portfolio = () => {
     fetchUserData();
   }, [username]);
 
-  // Update sections based on available data
-  useEffect(() => {
-    if (!userData) return;
+  // Memoize sections based on available data
+  const sections = useMemo(() => {
+    if (!userData) return [{ id: 'profile', label: 'Profile' }];
 
     const availableSections = [{ id: 'profile', label: 'Profile' }];
 
@@ -161,45 +151,43 @@ const Portfolio = () => {
       availableSections.push({ id: 'achievements', label: 'Achievements' });
     }
 
-    setSections(availableSections);
+    return availableSections;
   }, [userData]);
 
   // Optimized scroll handling with Intersection Observer - Disabled on mobile
   useEffect(() => {
     if (!sections.length || isMobile) return;
-    
-    // Debounced state update for active section
+
     const debouncedSetActiveSection = (sectionId) => {
       if (prevActiveSectionRef.current === sectionId) return;
-      
+
       if (activeSectionChangeTimeoutRef.current) {
         clearTimeout(activeSectionChangeTimeoutRef.current);
       }
-      
+
       activeSectionChangeTimeoutRef.current = setTimeout(() => {
         setActiveSection(sectionId);
         prevActiveSectionRef.current = sectionId;
-      }, 100); // Small debounce to avoid rapid state changes
+      }, 100);
     };
 
     const observerOptions = {
       root: null,
       rootMargin: '-10% 0px -70% 0px',
-      threshold: [0, 0.1, 0.2] // Multiple thresholds for smoother detection
+      threshold: [0, 0.1, 0.2]
     };
 
     const observerCallback = (entries) => {
-      // Find the entry with the highest intersection ratio
       let highestEntry = null;
       let highestRatio = 0;
-      
+
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > highestRatio) {
           highestRatio = entry.intersectionRatio;
           highestEntry = entry;
         }
       });
-      
+
       if (highestEntry) {
         debouncedSetActiveSection(highestEntry.target.id);
       }
@@ -228,11 +216,9 @@ const Portfolio = () => {
       const elementPosition = section.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - navOffset;
 
-      // Handle mobile differently - simple scroll with less overhead
       if (isMobile) {
         window.scrollTo(0, offsetPosition);
       } else {
-        // Using requestAnimationFrame for smoother scrolling on desktop
         requestAnimationFrame(() => {
           window.scrollTo({
             top: offsetPosition,
@@ -244,7 +230,7 @@ const Portfolio = () => {
     setIsMenuOpen(false);
   }, [isMobile]);
 
-  const renderNavLinks = () => {
+  const renderNavLinks = useMemo(() => {
     if (!Array.isArray(sections)) return null;
 
     return sections.map(section => (
@@ -260,7 +246,7 @@ const Portfolio = () => {
         {section.label}
       </button>
     ));
-  };
+  }, [sections, activeSection, scrollToSection]);
 
   if (loading) {
     return (
@@ -289,7 +275,7 @@ const Portfolio = () => {
             <div className="max-w-7xl mx-auto px-4">
               <div className="flex items-center justify-center h-16">
                 <div className="hidden lg:flex items-center justify-center space-x-1">
-                  {renderNavLinks()}
+                  {renderNavLinks}
                 </div>
                 <div className="lg:hidden absolute right-4">
                   <button
@@ -305,7 +291,7 @@ const Portfolio = () => {
           {isMenuOpen && (
             <div className="lg:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900/80 backdrop-blur-xl">
-                {renderNavLinks()}
+                {renderNavLinks}
               </div>
             </div>
           )}
