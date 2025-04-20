@@ -5,8 +5,8 @@ import { HiExternalLink, HiCode, HiLightBulb } from 'react-icons/hi';
 
 const ProjectCard = ({ projects = [] }) => {
   return (
-    <CardContainer 
-      title="Projects" 
+    <CardContainer
+      title="Projects"
       icon={<HiLightBulb className="w-6 h-6" />}
       subtitle="Showcasing my work and creations"
     >
@@ -18,13 +18,12 @@ const ProjectCard = ({ projects = [] }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className={`flex flex-col md:flex-row ${
-              index % 2 === 1 ? "md:flex-row-reverse" : ""
-            } items-center gap-6 md:gap-8 bg-gradient-to-br 
-                     from-gray-800/40 to-gray-800/10 
-                     border border-gray-700/20
-                     hover:border-blue-500 hover:shadow-lg
-                     rounded-xl sm:rounded-2xl overflow-hidden shadow-lg transition-all duration-300`}
+            className={`flex flex-col md:flex-row ${index % 2 === 1 ? "md:flex-row-reverse" : ""
+              } items-center gap-6 md:gap-8 bg-gradient-to-br 
+                from-gray-900/80 to-gray-800/60                     
+                border border-gray-700/20
+                hover:border-blue-500 hover:shadow-lg
+                rounded-xl sm:rounded-2xl overflow-hidden shadow-lg transition-all duration-300`}
           >
             {/* Image Section with Gradient Overlay */}
             <div className="flex-shrink-0 w-full md:w-1/2 relative aspect-video md:aspect-auto overflow-hidden">
