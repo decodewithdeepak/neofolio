@@ -16,7 +16,7 @@ const ProjectCard = ({ projects = [] }) => {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
             whileHover={{ y: -5 }}
-            className="group relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br 
+            className="relative overflow-hidden rounded-xl sm:rounded-2xl bg-gradient-to-br 
                      from-white/40 to-white/10 dark:from-gray-800/40 dark:to-gray-800/10 
                      border border-white/20 dark:border-gray-700/20
                      hover:border-blue-500/20 dark:hover:border-blue-500/20
@@ -24,14 +24,14 @@ const ProjectCard = ({ projects = [] }) => {
           >
             {/* Image Container - Adjusted for mobile */}
             <div className="relative aspect-[16/9] sm:aspect-video overflow-hidden rounded-t-xl sm:rounded-t-2xl">
-              <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-[2px] group-hover:backdrop-blur-0 transition-all duration-300" />
+              <div className="absolute inset-0 bg-gray-900/20 backdrop-blur-[2px] hover:backdrop-blur-0 transition-all duration-300" />
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-500"
+                className="w-full h-full object-cover transform hover:scale-110 transition-all duration-500"
                 loading="lazy" // Added lazy loading
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent opacity-60 hover:opacity-80 transition-opacity duration-300" />
               
               {/* Project Links - Always visible on mobile */}
               <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4 
@@ -72,9 +72,9 @@ const ProjectCard = ({ projects = [] }) => {
             <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
               <div className="space-y-1 sm:space-y-2">
                 <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white
-                             group-hover:text-transparent group-hover:bg-clip-text
-                             group-hover:bg-gradient-to-r group-hover:from-blue-500 
-                             group-hover:to-purple-500 transition-colors duration-300">
+                             hover:text-transparent hover:bg-clip-text
+                             hover:bg-gradient-to-r hover:from-blue-500 
+                             hover:to-purple-500 transition-colors duration-300">
                   {project.title}
                 </h3>
                 <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 line-clamp-2">
@@ -99,17 +99,6 @@ const ProjectCard = ({ projects = [] }) => {
                   </span>
                 ))}
               </div>
-
-              {/* Learn More Link - Touch-friendly */}
-              <motion.div
-                whileHover={{ x: 5 }}
-                className="flex items-center gap-1 text-blue-500 dark:text-blue-400
-                         group-hover:text-blue-600 dark:group-hover:text-blue-300
-                         transition-colors cursor-pointer pt-2 touch-action-manipulation"
-              >
-                <span className="text-sm font-medium">Learn more</span>
-                <HiChevronRight className="w-4 h-4" />
-              </motion.div>
             </div>
           </motion.div>
         ))}
