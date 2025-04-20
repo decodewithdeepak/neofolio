@@ -19,9 +19,28 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('profile');
   const [sections, setSections] = useState([{ id: 'profile', label: 'Profile' }]);
   const [isScrolling, setIsScrolling] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const prevActiveSectionRef = useRef(activeSection);
   const activeSectionChangeTimeoutRef = useRef(null);
   const scrollTimeoutRef = useRef(null);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const mobile = window.innerWidth < 768; // Standard breakpoint for mobile
+      setIsMobile(mobile);
+    };
+    
+    // Initial check
+    checkIfMobile();
+    
+    // Listen for resize events
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
 
   const [userData, setUserData] = useState({
     profile: {
@@ -145,9 +164,9 @@ const Portfolio = () => {
     setSections(availableSections);
   }, [userData]);
 
-  // Optimized scroll handling with Intersection Observer
+  // Optimized scroll handling with Intersection Observer - Disabled on mobile
   useEffect(() => {
-    if (!sections.length) return;
+    if (!sections.length || isMobile) return;
     
     // Debounced state update for active section
     const debouncedSetActiveSection = (sectionId) => {
@@ -199,7 +218,7 @@ const Portfolio = () => {
         clearTimeout(activeSectionChangeTimeoutRef.current);
       }
     };
-  }, [sections]);
+  }, [sections, isMobile]);
 
   // Memoized scroll function for better performance
   const scrollToSection = useCallback((sectionId) => {
@@ -209,16 +228,21 @@ const Portfolio = () => {
       const elementPosition = section.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - navOffset;
 
-      // Using requestAnimationFrame for smoother scrolling
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
+      // Handle mobile differently - simple scroll with less overhead
+      if (isMobile) {
+        window.scrollTo(0, offsetPosition);
+      } else {
+        // Using requestAnimationFrame for smoother scrolling on desktop
+        requestAnimationFrame(() => {
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
         });
-      });
+      }
     }
     setIsMenuOpen(false);
-  }, []);
+  }, [isMobile]);
 
   const renderNavLinks = () => {
     if (!Array.isArray(sections)) return null;
