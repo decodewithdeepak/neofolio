@@ -109,7 +109,7 @@ const ResponsiveSkillCard = ({ category }) => (
       </div>
     </div>
     {/* Skills */}
-    <div className="p-3 md:p-4 flex flex-wrap md:flex-col gap-2 md:space-y-3">
+    <div className="p-3 md:p-4 flex flex-wrap md:flex-col gap-2 md:space-y-1">
       {category.items.map((skill, index) => {
         const levelInfo = getSkillLevel(skill.level);
         const circumference = 2 * Math.PI * 8; // 8 is radius for a 16px circle
