@@ -6,14 +6,14 @@ import CardContainer from './CardContainer';
 
 const ExperienceCard = ({ experiences = [] }) => {
   return (
-    <CardContainer 
-      title="Experience" 
+    <CardContainer
+      title="Experience"
       icon={<FaBriefcase className="w-6 h-6" />}
       subtitle="My professional journey"
     >
       <div className="relative pl-8 space-y-12">
         {/* Vertical Timeline Line */}
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent" />
+        <div className="absolute left-2 sm:left-0 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent" />
 
         {experiences.map((exp, index) => (
           <motion.div
@@ -22,12 +22,13 @@ const ExperienceCard = ({ experiences = [] }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
+            className="relative"
           >
             {/* Timeline Node */}
-            <div className="absolute -left-6">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 shadow-lg">
+            <div className="absolute -left-10 sm:-left-14">
+              <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 shadow-lg">
                 <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 flex items-center justify-center">
-                  <FaBriefcase className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                  <FaBriefcase className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 dark:text-blue-400" />
                 </div>
               </div>
             </div>
@@ -48,7 +49,7 @@ const ExperienceCard = ({ experiences = [] }) => {
                     </h3>
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
                       <HiOfficeBuilding className="w-4 h-4" />
-                      <span className="font-medium">{exp.company}</span>
+                      <span className="font-medium text-blue-400">{exp.company}</span>
                     </div>
                   </div>
 
