@@ -43,21 +43,21 @@ const testimonials = [
     name: "Aarav Sharma",
     role: "Frontend Developer",
     company: "TechSolutions",
-    content: "NeoFolio helped me showcase my projects effectively and land a great job. Highly recommended!",
+    content: "Neofolio helped me showcase my projects effectively and land a great job. Highly recommended!",
     avatar: "https://randomuser.me/api/portraits/men/10.jpg"
   },
   {
     name: "Ishita Patel",
     role: "Full Stack Engineer",
     company: "CodeCraft",
-    content: "Creating a portfolio was never this easy. NeoFolio's templates are modern and user-friendly.",
+    content: "Creating a portfolio was never this easy. Neofolio's templates are modern and user-friendly.",
     avatar: "https://randomuser.me/api/portraits/women/20.jpg"
   },
   {
     name: "Rohan Gupta",
     role: "UI/UX Designer",
     company: "DesignStudio",
-    content: "NeoFolio's designs are sleek and professional. It helped me stand out in the competitive design industry.",
+    content: "Neofolio's designs are sleek and professional. It helped me stand out in the competitive design industry.",
     avatar: "https://randomuser.me/api/portraits/men/30.jpg"
   },
 ];
@@ -147,7 +147,7 @@ const HeroSection = ({ isVisible, renderCTAButtons }) => (
         >
           <span className="text-sm text-gray-300 flex items-center gap-2">
             ✨ Build. Share. Shine. With
-            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">NeoFolio</span>
+            <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Neofolio</span>
           </span>
         </motion.div>
 
@@ -239,7 +239,7 @@ const FinalCTASection = ({ isVisible }) => (
       Ready to showcase your talent?
     </h2>
     <p className="text-xl text-gray-300 mb-8">
-      Join thousands of developers who have boosted their careers with NeoFolio
+      Join thousands of developers who have boosted their careers with Neofolio
     </p>
     <div className="flex justify-center">
       <Link
