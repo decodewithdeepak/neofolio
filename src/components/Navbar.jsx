@@ -9,9 +9,9 @@ const Navbar = () => {
       animate={{ y: 0 }}
       className="fixed w-full z-[100]"
     >
-      {/* Glass Effect Background - Matched with site theme */}
-      <div className="absolute inset-0 backdrop-blur-xl bg-white/60 dark:bg-gray-800/60 
-                    border-b border-white/20 dark:border-gray-700/20" />
+      {/* Glass Effect Background */}
+      <div className="absolute inset-0 backdrop-blur-xl bg-gray-800/60 
+                    border-b border-gray-700/20" />
 
       <div className="relative max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -32,8 +32,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-2 sm:gap-4">
             <Link 
               to="/login" 
-              className="text-gray-600 dark:text-gray-300 hover:text-blue-600 
-                       dark:hover:text-blue-400 transition-colors px-2 sm:px-3 py-2 text-sm"
+              className="text-gray-300 hover:text-blue-400 
+                       transition-colors px-2 sm:px-3 py-2 text-sm"
             >
               Login
             </Link>
@@ -50,9 +50,9 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
-            <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 
+            <button className="p-2 rounded-lg hover:bg-gray-800 
                            transition-colors">
-              <svg className="w-6 h-6 text-gray-600 dark:text-gray-300" 
+              <svg className="w-6 h-6 text-gray-300" 
                    fill="none" 
                    viewBox="0 0 24 24" 
                    stroke="currentColor">

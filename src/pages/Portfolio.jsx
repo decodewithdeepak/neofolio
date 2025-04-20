@@ -163,7 +163,7 @@ const Portfolio = () => {
         className={`text-sm font-medium transition-all duration-300 px-4 py-2 my-1 lg:my-0 lg:mx-2 rounded-xl ${
           activeSection === section.id
             ? 'bg-gradient-to-r from-blue-500/80 to-purple-500/80 text-white'
-            : 'hover:bg-gray-100 dark:hover:bg-gray-700/50 text-gray-600 dark:text-gray-400'
+            : 'hover:bg-gray-700/50 text-gray-400'
         }`}
       >
         {section.label}

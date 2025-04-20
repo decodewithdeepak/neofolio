@@ -16,7 +16,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-ß
+
 /* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
@@ -89,13 +89,4 @@ section:not(.active) {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply from-blue-500/50 to-purple-500/50;
-}
-
-/* Dark mode adjustments */
-.dark ::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.2);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.4);
 }

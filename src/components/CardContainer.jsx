@@ -9,9 +9,8 @@ const CardContainer = ({ children, className, title, icon, subtitle }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
       className={`relative overflow-hidden backdrop-blur-2xl 
-                 bg-gradient-to-br from-white/40 via-white/25 to-white/10 
-                 dark:from-gray-800/40 dark:via-gray-800/25 dark:to-gray-900/10
-                 rounded-3xl shadow-2xl border border-white/20 dark:border-gray-700/20
+                 bg-gradient-to-br from-gray-800/40 via-gray-800/25 to-gray-900/10
+                 rounded-3xl shadow-2xl border border-gray-700/20
                  transition-all duration-500 ${className}`}
     >
       {/* Background Effects */}
@@ -31,7 +30,7 @@ const CardContainer = ({ children, className, title, icon, subtitle }) => {
               transition={{ delay: 0.2 }}
               className="flex items-center gap-3 mb-2"
             >
-              {icon && <div className="text-blue-500 dark:text-blue-400">{icon}</div>}
+              {icon && <div className="text-blue-400">{icon}</div>}
               <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
                          bg-clip-text text-transparent">
                 {title}
@@ -43,7 +42,7 @@ const CardContainer = ({ children, className, title, icon, subtitle }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-gray-600 dark:text-gray-400 text-sm ml-9"
+                className="text-gray-400 text-sm ml-9"
               >
                 {subtitle}
               </motion.p>

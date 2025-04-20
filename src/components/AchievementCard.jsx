@@ -31,9 +31,9 @@ const AchievementCard = ({ achievements = [] }) => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               className="relative overflow-hidden rounded-xl bg-gradient-to-br 
-                       from-white/80 to-white/40 dark:from-gray-800/50 dark:to-gray-800/30
-                       border border-white/20 dark:border-gray-700/20 p-5
-                       hover:border-yellow-500/40 dark:hover:border-yellow-500/40
+                       from-gray-800/50 to-gray-800/30
+                       border border-gray-700/20 p-5
+                       hover:border-yellow-500/40
                        transition-all duration-300 shadow-lg backdrop-blur-sm"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-pink-500/5" />
@@ -44,9 +44,9 @@ const AchievementCard = ({ achievements = [] }) => {
                     className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 
                              p-0.5 shadow-lg shadow-yellow-500/25"
                   >
-                    <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 
+                    <div className="w-full h-full rounded-xl bg-gray-900/80 
                                  backdrop-blur-sm flex items-center justify-center relative overflow-hidden
-                                 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-colors duration-300">
+                                 hover:bg-gray-800/60 transition-colors duration-300">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,0,0.1),transparent_70%)]" />
                       <AchievementIcon className="w-7 h-7 text-yellow-500
                                               drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
@@ -55,22 +55,22 @@ const AchievementCard = ({ achievements = [] }) => {
                 </div>
 
                 <div className="flex-1 space-y-3 text-center md:text-left">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                  <h3 className="text-xl font-semibold text-white">
                     {achievement.title}
                   </h3>
 
                   <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                    <div className="flex items-center gap-2 text-gray-300">
                       <HiOfficeBuilding className="w-4 h-4 flex-shrink-0 text-yellow-500" />
                       <span className="text-sm font-medium">{achievement.issuer}</span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                    <div className="flex items-center gap-2 text-gray-400">
                       <HiCalendar className="w-4 h-4 flex-shrink-0 text-yellow-500" />
                       <span className="text-sm">{achievement.date}</span>
                     </div>
                   </div>
 
-                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {achievement.description}
                   </p>
 

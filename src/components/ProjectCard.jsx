@@ -21,17 +21,9 @@ const ProjectCard = ({ projects = [] }) => {
             className={`flex flex-col md:flex-row ${
               index % 2 === 1 ? "md:flex-row-reverse" : ""
             } items-center gap-6 md:gap-8 bg-gradient-to-br 
-                     from-white/40 to-white/10 dark:from-gray-800/40 dark:to-gray-800/10 
-                     border border-white/20 dark:border-gray-700/20
-                     ${
-                       index % 4 === 0 
-                         ? "hover:border-blue-500/40 dark:hover:border-blue-500/40" 
-                         : index % 4 === 1 
-                         ? "hover:border-purple-500/40 dark:hover:border-purple-500/40" 
-                         : index % 4 === 2 
-                         ? "hover:border-teal-500/40 dark:hover:border-teal-500/40" 
-                         : "hover:border-amber-500/40 dark:hover:border-amber-500/40"
-                     }
+                     from-gray-800/40 to-gray-800/10 
+                     border border-gray-700/20
+                     hover:border-blue-500 hover:shadow-lg
                      rounded-xl sm:rounded-2xl overflow-hidden shadow-lg transition-all duration-300`}
           >
             {/* Image Section with Gradient Overlay */}
@@ -54,7 +46,7 @@ const ProjectCard = ({ projects = [] }) => {
                              bg-clip-text text-transparent transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
                   {project.description}
                 </p>
               </div>
@@ -66,11 +58,10 @@ const ProjectCard = ({ projects = [] }) => {
                     key={idx}
                     whileHover={{ y: -2 }}
                     className="px-3 py-1 text-xs sm:text-sm rounded-full
-                             bg-gradient-to-r from-white/50 to-white/30
-                             dark:from-gray-800/50 dark:to-gray-700/30
-                             border border-gray-200/50 dark:border-gray-600/50
-                             text-gray-700 dark:text-gray-300
-                             hover:border-blue-500/30 hover:text-blue-600 dark:hover:text-blue-400
+                             bg-gradient-to-r from-gray-800/50 to-gray-700/30
+                             border border-gray-600/50
+                             text-gray-300
+                             hover:border-blue-500/30 hover:text-blue-400
                              transition-all duration-200 shadow-sm"
                   >
                     {tech}
@@ -87,10 +78,10 @@ const ProjectCard = ({ projects = [] }) => {
                     rel="noopener noreferrer"
                     whileHover={{ y: -2 }}
                     className="flex items-center justify-center gap-2 px-4 py-2 
-                             rounded-lg bg-white/20 dark:bg-gray-800/40 backdrop-blur-md 
-                             border border-white/20 dark:border-gray-700/40
-                             text-gray-800 dark:text-white hover:bg-white/30 
-                             dark:hover:bg-gray-800/60 transition-all duration-300 text-sm shadow-sm"
+                             rounded-lg bg-gray-800/40 backdrop-blur-md 
+                             border border-gray-700/40
+                             text-white hover:bg-gray-800/60 
+                             transition-all duration-300 text-sm shadow-sm"
                   >
                     <HiCode className="w-4 h-4" />
                     <span className="font-medium">Code</span>

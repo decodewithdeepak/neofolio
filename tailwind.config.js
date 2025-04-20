@@ -1,28 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
           500: '#0ea5e9',
           600: '#0284c7',
         },
         secondary: {
-          50: '#faf5ff',
-          100: '#f3e8ff',
           500: '#a855f7',
           600: '#9333ea',
         }
       },
       boxShadow: {
-        'glass': '0 0 20px rgba(0, 0, 0, 0.05)',
-        'glass-dark': '0 0 20px rgba(0, 0, 0, 0.2)',
-        'glass-hover': '0 0 30px rgba(0, 0, 0, 0.1)',
-        'glass-hover-dark': '0 0 30px rgba(0, 0, 0, 0.3)',
+        'glass': '0 0 20px rgba(0, 0, 0, 0.2)',
+        'glass-hover': '0 0 30px rgba(0, 0, 0, 0.3)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

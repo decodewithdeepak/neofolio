@@ -47,7 +47,7 @@ const UserMenu = () => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-3 px-3 py-2 rounded-lg 
-                   hover:bg-gray-100 dark:hover:bg-gray-700/50 
+                   hover:bg-gray-700/50 
                    transition-colors duration-200"
       >
         <img
@@ -55,7 +55,7 @@ const UserMenu = () => {
           alt="Profile"
           className="w-9 h-9 rounded-full border-2 border-purple-500"
         />
-        <span className="text-gray-700 dark:text-gray-200 font-medium">
+        <span className="text-gray-200 font-medium">
           @{username}
         </span>
         <svg
@@ -75,12 +75,12 @@ const UserMenu = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 
-                      rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 
+        <div className="absolute right-0 mt-2 w-56 bg-gray-800 
+                      rounded-xl shadow-lg border border-gray-700 
                       overflow-hidden z-50">
-          <div className="px-4 py-3 border-b border-gray-100 dark:border-gray-700">
-            <p className="text-sm text-gray-500 dark:text-gray-400">Signed in as</p>
-            <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+          <div className="px-4 py-3 border-b border-gray-700">
+            <p className="text-sm text-gray-400">Signed in as</p>
+            <p className="text-sm font-medium text-white truncate">
               {currentUser?.email}
             </p>
           </div>
@@ -91,8 +91,8 @@ const UserMenu = () => {
                 navigate(`/${username}`);
                 setIsOpen(false);
               }}
-              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 
-                        dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="flex items-center w-full px-4 py-2 text-sm text-gray-200 
+                        hover:bg-gray-700"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -112,8 +112,8 @@ const UserMenu = () => {
             
             <Link
               to="/edit-profile"
-              className="flex items-center w-full px-4 py-2 text-sm text-gray-700 
-                         dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+              className="flex items-center w-full px-4 py-2 text-sm text-gray-200 
+                         hover:bg-gray-700"
             >
               <svg
                 className="w-4 h-4 mr-2"
@@ -134,7 +134,7 @@ const UserMenu = () => {
             <button
               onClick={handleLogout}
               className="flex items-center w-full px-4 py-2 text-sm text-red-600 
-                        hover:bg-red-50 dark:hover:bg-red-900/20"
+                        hover:bg-red-900/20"
             >
               <svg
                 className="w-4 h-4 mr-2"
