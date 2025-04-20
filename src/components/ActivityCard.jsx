@@ -45,11 +45,9 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
-                 dark:from-gray-800/60 dark:to-gray-900/20
-                 border border-white/20 dark:border-gray-700/20
-                 shadow-lg backdrop-blur-lg hover:border-blue-500/20 
-                 dark:hover:border-blue-500/30 transition-all duration-300"
+        className="p-6 rounded-xl bg-gradient-to-br from-gray-800/60 to-gray-900/20
+                 border border-gray-700/20
+                 shadow-lg backdrop-blur-lg hover:border-blue-500 transition-all duration-300"
       >
         {/* Header with Link */}
           <div className="flex items-center justify-between mb-6">
@@ -125,11 +123,9 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
-           dark:from-gray-800/60 dark:to-gray-900/20 
-           border border-white/20 dark:border-gray-700/20
-           shadow-lg backdrop-blur-lg hover:border-yellow-500/20 
-           dark:hover:border-yellow-500/30 transition-all duration-300"
+        className="p-6 rounded-xl bg-gradient-to-br from-gray-800/60to-gray-900/20 
+           border border-gray-700/20
+           shadow-lg backdrop-blur-lg border-yellow-500 transition-all duration-300"
       >
         {/* Background Effect */}
         <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden">
@@ -235,30 +231,30 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
               solved: leetcodeData.easySolved,
               total: leetcodeData.totalEasy,
               icon: HiStar,
-              color: 'text-green-500 dark:text-green-400',
-              bgColor: 'bg-green-500/5 dark:bg-green-500/10',
-              borderColor: 'border-green-500/20 dark:border-green-500/20',
-              hoverBorderColor: 'hover:border-green-500/50 dark:hover:border-green-500/50'
+              color: 'text-green-400',
+              bgColor: 'bg-green-500/10',
+              borderColor: 'border-green-500/20',
+              hoverBorderColor: 'hover:border-green-500/50'
             },
             {
               label: 'Medium Questions',
               solved: leetcodeData.mediumSolved,
               total: leetcodeData.totalMedium,
               icon: HiPuzzle,
-              color: 'text-yellow-500 dark:text-yellow-400',
-              bgColor: 'bg-yellow-500/5 dark:bg-yellow-500/10',
-              borderColor: 'border-yellow-500/20 dark:border-yellow-500/20',
-              hoverBorderColor: 'hover:border-yellow-500/50 dark:hover:border-yellow-500/50'
+              color: 'text-yellow-400',
+              bgColor: 'bg-yellow-500/10',
+              borderColor: 'border-yellow-500/20',
+              hoverBorderColor: 'hover:border-yellow-500/50'
             },
             {
               label: 'Hard Questions',
               solved: leetcodeData.hardSolved,
               total: leetcodeData.totalHard,
               icon: HiCode,
-              color: 'text-red-500 dark:text-red-400',
-              bgColor: 'bg-red-500/5 dark:bg-red-500/10',
-              borderColor: 'border-red-500/20 dark:border-red-500/20',
-              hoverBorderColor: 'hover:border-red-500/50 dark:hover:border-red-500/50'
+              color: 'text-red-400',
+              bgColor: 'bg-red-500/10',
+              borderColor: 'border-red-500/20',
+              hoverBorderColor: 'hover:border-red-500/50'
             }
           ].map((category, index) => (
             <motion.div
