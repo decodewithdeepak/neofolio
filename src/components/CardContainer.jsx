@@ -22,7 +22,7 @@ const CardContainer = ({ children, className, title, icon, subtitle }) => {
       </div>
 
       {/* Content Container */}
-      <div className="relative p-8">
+      <div className="relative sm:p-8 p-4">
         {title && (
           <div className="mb-8">
             <motion.div
