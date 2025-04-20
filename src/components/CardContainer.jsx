@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const CardContainer = ({ children, className, title }) => {
+const CardContainer = ({ children, className, title, icon, subtitle }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -24,15 +24,31 @@ const CardContainer = ({ children, className, title }) => {
       {/* Content Container */}
       <div className="relative p-8">
         {title && (
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
-                     bg-clip-text text-transparent mb-8"
-          >
-            {title}
-          </motion.h2>
+          <div className="mb-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center gap-3 mb-2"
+            >
+              {icon && <div className="text-blue-500 dark:text-blue-400">{icon}</div>}
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 
+                         bg-clip-text text-transparent">
+                {title}
+              </h2>
+            </motion.div>
+            
+            {subtitle && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+                className="text-gray-600 dark:text-gray-400 text-sm ml-9"
+              >
+                {subtitle}
+              </motion.p>
+            )}
+          </div>
         )}
         {children}
       </div>

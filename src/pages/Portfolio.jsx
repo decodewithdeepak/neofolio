@@ -88,20 +88,20 @@ const Portfolio = () => {
 
     const availableSections = [{ id: 'profile', label: 'Profile' }];
 
+    if (userData.skills?.length > 0) {
+      availableSections.push({ id: 'skills', label: 'Skills' });
+    }
     if (userData.profile?.githubUsername || userData.profile?.leetcodeUsername) {
       availableSections.push({ id: 'coding', label: 'Coding Stats' });
     }
-    if (userData.education?.length > 0) {
-      availableSections.push({ id: 'education', label: 'Education' });
+    if (userData.projects?.length > 0) {
+      availableSections.push({ id: 'projects', label: 'Projects' });
     }
     if (userData.experiences?.length > 0) {
       availableSections.push({ id: 'experience', label: 'Experience' });
     }
-    if (userData.skills?.length > 0) {
-      availableSections.push({ id: 'skills', label: 'Skills' });
-    }
-    if (userData.projects?.length > 0) {
-      availableSections.push({ id: 'projects', label: 'Projects' });
+    if (userData.education?.length > 0) {
+      availableSections.push({ id: 'education', label: 'Education' });
     }
     if (userData.achievements?.length > 0) {
       availableSections.push({ id: 'achievements', label: 'Achievements' });
@@ -227,6 +227,11 @@ const Portfolio = () => {
             <section id="profile" className="scroll-mt-32">
               <ProfileCard profile={userData?.profile || {}} />
             </section>
+            {userData?.skills?.length > 0 && (
+              <section id="skills" className="scroll-mt-32">
+                <SkillsCard skills={userData.skills} />
+              </section>
+            )}
             {(userData?.profile?.githubUsername || userData?.profile?.leetcodeUsername) && (
               <section id="coding" className="scroll-mt-32">
                 <ActivityCard
@@ -235,9 +240,9 @@ const Portfolio = () => {
                 />
               </section>
             )}
-            {userData?.education?.length > 0 && (
-              <section id="education" className="scroll-mt-32">
-                <EducationCard education={userData.education} />
+            {userData?.projects?.length > 0 && (
+              <section id="projects" className="scroll-mt-32">
+                <ProjectCard projects={userData.projects} />
               </section>
             )}
             {userData?.experiences?.length > 0 && (
@@ -245,14 +250,9 @@ const Portfolio = () => {
                 <ExperienceCard experiences={userData.experiences} />
               </section>
             )}
-            {userData?.skills?.length > 0 && (
-              <section id="skills" className="scroll-mt-32">
-                <SkillsCard skills={userData.skills} />
-              </section>
-            )}
-            {userData?.projects?.length > 0 && (
-              <section id="projects" className="scroll-mt-32">
-                <ProjectCard projects={userData.projects} />
+            {userData?.education?.length > 0 && (
+              <section id="education" className="scroll-mt-32">
+                <EducationCard education={userData.education} />
               </section>
             )}
             {userData?.achievements?.length > 0 && (
