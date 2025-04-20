@@ -1,11 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import CardContainer from './CardContainer';
-import { HiExternalLink, HiCode, HiChevronRight } from 'react-icons/hi';
+import { HiExternalLink, HiCode, HiLightBulb } from 'react-icons/hi';
 
 const ProjectCard = ({ projects = [] }) => {
   return (
-    <CardContainer title="Projects">
+    <CardContainer 
+      title="Projects" 
+      icon={<HiLightBulb className="w-6 h-6" />}
+      subtitle="Showcasing my work and creations"
+    >
       <div className="space-y-8">
         {projects.map((project, index) => (
           <motion.div
@@ -20,28 +24,29 @@ const ProjectCard = ({ projects = [] }) => {
                      from-white/40 to-white/10 dark:from-gray-800/40 dark:to-gray-800/10 
                      border border-white/20 dark:border-gray-700/20
                      hover:border-blue-500/20 dark:hover:border-blue-500/20
-                     rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-300`}
+                     rounded-xl sm:rounded-2xl overflow-hidden shadow-lg transition-all duration-300`}
           >
-            {/* Image Section */}
-            <div className="flex-shrink-0 w-full md:w-1/2 relative aspect-video md:aspect-auto">
+            {/* Image Section with Gradient Overlay */}
+            <div className="flex-shrink-0 w-full md:w-1/2 relative aspect-video md:aspect-auto group overflow-hidden">
+              {/* Image */}
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover rounded-t-xl md:rounded-none md:rounded-l-xl transform hover:scale-105 transition-all duration-500"
+                className="w-full h-full object-cover transform group-hover:scale-105 transition-all duration-700"
                 loading="lazy"
               />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
 
             {/* Content Section */}
             <div className="flex-1 p-4 sm:p-6 space-y-4">
               <div className="space-y-2">
-                <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white
-                             hover:text-transparent hover:bg-clip-text
-                             hover:bg-gradient-to-r hover:from-blue-500 
-                             hover:to-purple-500 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600
+                             bg-clip-text text-transparent transition-colors duration-300">
                   {project.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
+                <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                   {project.description}
                 </p>
               </div>
@@ -49,32 +54,36 @@ const ProjectCard = ({ projects = [] }) => {
               {/* Technologies */}
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, idx) => (
-                  <span
+                  <motion.span
                     key={idx}
+                    whileHover={{ y: -2, scale: 1.05 }}
                     className="px-3 py-1 text-xs sm:text-sm rounded-full
-                             bg-gradient-to-r from-gray-50/50 to-gray-100/50
-                             dark:from-gray-800/50 dark:to-gray-700/50
+                             bg-gradient-to-r from-white/50 to-white/30
+                             dark:from-gray-800/50 dark:to-gray-700/30
                              border border-gray-200/50 dark:border-gray-600/50
                              text-gray-700 dark:text-gray-300
-                             hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400
-                             transition-all duration-200"
+                             hover:border-blue-500/30 hover:text-blue-600 dark:hover:text-blue-400
+                             transition-all duration-200 shadow-sm"
                   >
                     {tech}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
 
               {/* Links */}
-              <div className="flex gap-3">
+              <div className="flex gap-3 pt-2">
                 {project.github && (
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center justify-center gap-2 px-4 py-2 
-                             rounded-lg bg-white/10 backdrop-blur-md border border-white/20
-                             text-white hover:bg-white/20 transition-all duration-300 text-sm"
+                             rounded-lg bg-white/20 dark:bg-gray-800/40 backdrop-blur-md 
+                             border border-white/20 dark:border-gray-700/40
+                             text-gray-800 dark:text-white hover:bg-white/30 
+                             dark:hover:bg-gray-800/60 transition-all duration-300 text-sm shadow-sm"
                   >
                     <HiCode className="w-4 h-4" />
                     <span className="font-medium">Code</span>
@@ -85,10 +94,11 @@ const ProjectCard = ({ projects = [] }) => {
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
+                    whileHover={{ y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center justify-center gap-2 px-4 py-2 
-                             rounded-lg bg-gradient-to-r from-blue-500/80 to-purple-500/80 
-                             hover:from-blue-600/80 hover:to-purple-600/80 text-white 
+                             rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 
+                             hover:from-blue-600 hover:to-purple-600 text-white 
                              shadow-lg shadow-blue-500/25 transition-all duration-300 text-sm"
                   >
                     <HiExternalLink className="w-4 h-4" />

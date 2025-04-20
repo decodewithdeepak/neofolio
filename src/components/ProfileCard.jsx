@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaGlobe, FaCode, FaHackerrank } from 'react-icons/fa';
 import { SiLeetcode, SiGeeksforgeeks } from 'react-icons/si';
 import { HiMail, HiSparkles, HiLocationMarker, HiLink } from 'react-icons/hi';
+import CardContainer from './CardContainer';
 
 const getSocialIcon = (name) => {
   if (!name) return null;
@@ -51,9 +52,9 @@ const ProfileCard = ({ profile = {} }) => {
   } = profile;
 
   return (
-    <div className="relative z-10 overflow-hidden">
+    <CardContainer className="transform-gpu">
       {/* Hero Banner Section */}
-      <div className="relative h-52 rounded-t-3xl overflow-hidden">
+      <div className="relative h-52 -mx-6 -mt-6 sm:-mx-8 sm:-mt-8 rounded-t-3xl overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20" />
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-30" />
         <motion.div
@@ -64,12 +65,12 @@ const ProfileCard = ({ profile = {} }) => {
         />
       </div>
 
-      {/* Profile Content Card */}
+      {/* Profile Content */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative -mt-28 mx-4 rounded-3xl backdrop-blur-xl 
+        className="relative -mt-28 rounded-3xl backdrop-blur-xl 
                  bg-white/60 dark:bg-gray-800/60 
                  border border-white/20 dark:border-gray-700/20 
                  shadow-2xl"
@@ -170,11 +171,12 @@ const ProfileCard = ({ profile = {} }) => {
                       target={link.name.toLowerCase() === 'mail' ? '_self' : '_blank'}
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 px-4 py-2 rounded-xl
-                               bg-white/10 backdrop-blur-sm border border-white/20
-                               hover:bg-white/20 hover:border-white/30
-                               dark:hover:bg-gray-800/50
+                               bg-white/20 backdrop-blur-sm border border-white/20
+                               hover:bg-white/30 hover:border-blue-300/30
+                               dark:bg-gray-800/30 dark:border-gray-700/30
+                               dark:hover:border-blue-500/30
                                text-gray-700 dark:text-gray-300
-                               transform transition-all duration-200"
+                               transform transition-all duration-200 shadow-sm"
                     >
                       {getSocialIcon(link.name)}
                       <span className="text-sm font-medium">{link.name}</span>
@@ -189,7 +191,7 @@ const ProfileCard = ({ profile = {} }) => {
         {/* Bottom Gradient Line */}
         <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-b-3xl" />
       </motion.div>
-    </div>
+    </CardContainer>
   );
 };
 

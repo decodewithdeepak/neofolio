@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import CardContainer from './CardContainer';
 import { SiLeetcode, SiGithub } from 'react-icons/si';
-import { HiTrendingUp, HiCode, HiStar, HiPuzzle, HiCheck, HiChartBar, HiClock, HiServer } from 'react-icons/hi';
+import { HiTrendingUp, HiCode, HiStar, HiPuzzle, HiCheck, HiChartBar, HiClock, HiServer, HiTerminal } from 'react-icons/hi';
 
 const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
   const [leetcodeData, setLeetcodeData] = useState(null);
@@ -43,235 +43,247 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
 
     return (
       <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="p-6 rounded-xl bg-white/5 border border-white/10 space-y-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ y: -5 }}
+        className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
+                 dark:from-gray-800/60 dark:to-gray-900/20
+                 border border-white/20 dark:border-gray-700/20
+                 shadow-lg backdrop-blur-lg hover:border-blue-500/20 
+                 dark:hover:border-blue-500/30 transition-all duration-300"
       >
-      {/* Header with Link */}
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-        <SiGithub className="w-6 h-6 text-gray-400" />
-        <h3 className="text-lg font-semibold text-white">GitHub Stats</h3>
-        </div>
-        <a
-        href={`https://github.com/${githubUsername}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm text-gray-400 hover:text-white transition-colors"
-        >
-        @{githubUsername}
-        </a>
-      </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Main Stats Card */}
-        <div className="relative overflow-hidden">
-        <img
-          src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&hide_border=true&theme=midnight-purple&bg_color=0D1117&title_color=A78BFA&icon_color=9F7AEA&text_color=FFFFFF&include_all_commits=true`}
-          alt="GitHub Stats"
-          className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
-        />
+        {/* Header with Link */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 shadow-md">
+              <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 
+                           backdrop-blur-sm flex items-center justify-center">
+                <SiGithub className="w-6 h-6 text-gray-800 dark:text-white" />
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">GitHub Activity</h3>
+          </div>
+          <a
+            href={`https://github.com/${githubUsername}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 rounded-full bg-white/20 dark:bg-gray-800/40 
+                     border border-white/10 dark:border-gray-700/30
+                     text-gray-800 dark:text-gray-300 text-sm hover:bg-white/30 
+                     dark:hover:bg-gray-700/50 transition-colors flex items-center gap-1"
+          >
+            <span>@{githubUsername}</span>
+            <HiTerminal className="w-4 h-4" />
+          </a>
         </div>
         
-        {/* Streak Stats */}
-        <div className="relative overflow-hidden">
-        <img
-          src={`https://github-readme-streak-stats.herokuapp.com/?user=${githubUsername}&theme=transparent&hide_border=true&ring=58a6ff&fire=58a6ff&currStreakLabel=ffffff&sideLabels=ffffff&card_width=450`}
-          alt="GitHub Streak"
-          className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Main Stats Card */}
+          <div className="relative overflow-hidden bg-white/10 dark:bg-gray-900/20 rounded-lg p-1 border border-white/10 dark:border-gray-700/30">
+            <img
+              src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&hide_border=true&theme=midnight-purple&bg_color=0D1117&title_color=A78BFA&icon_color=9F7AEA&text_color=FFFFFF&include_all_commits=true`}
+              alt="GitHub Stats"
+              className="w-full rounded-lg backdrop-blur-sm"
+              loading="lazy"
+            />
+          </div>
+          
+          {/* Streak Stats */}
+          <div className="relative overflow-hidden bg-white/10 dark:bg-gray-900/20 rounded-lg p-1 border border-white/10 dark:border-gray-700/30">
+            <img
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=${githubUsername}&theme=transparent&hide_border=true&ring=58a6ff&fire=58a6ff&currStreakLabel=ffffff&sideLabels=ffffff&card_width=450`}
+              alt="GitHub Streak"
+              className="w-full rounded-lg backdrop-blur-sm"
+              loading="lazy"
+            />
+          </div>
         </div>
+      </motion.div>
+    );
+  };
+
+  const renderLeetcodeActivity = () => {
+    if (!leetcodeUsername) return null;
+    if (loading) {
+      return (
+        <motion.div 
+          className="flex items-center justify-center p-8 rounded-xl border border-blue-500/20
+                   backdrop-blur-md bg-white/10 dark:bg-gray-800/20"
+        >
+          <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
+        </motion.div>
+      );
+    }
+    if (error) {
+      return (
+        <motion.div className="text-red-400 text-center p-6 bg-red-500/10 rounded-lg border border-red-500/20">
+          {error}
+        </motion.div>
+      );
+    }
+    if (!leetcodeData) return null;
+
+    return (
+      <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -5 }}
+      transition={{ delay: 0.2 }}
+      className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
+           dark:from-gray-800/60 dark:to-gray-900/20 
+           border border-white/20 dark:border-gray-700/20
+           shadow-lg backdrop-blur-lg hover:border-yellow-500/20 
+           dark:hover:border-yellow-500/30 transition-all duration-300"
+      >
+      {/* Background Effect */}
+      <div className="absolute inset-0 pointer-events-none rounded-xl overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-yellow-500/5 rounded-full blur-2xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-yellow-500/5 rounded-full blur-2xl"></div>
+      </div>
+      
+      {/* Header with Stats */}
+      <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6 relative">
+        <div className="flex items-center gap-3">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 p-0.5 shadow-md">
+          <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 
+                 backdrop-blur-sm flex items-center justify-center">
+          <SiLeetcode className="w-6 h-6 text-[#FFA116]" />
+          </div>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">LeetCode Stats</h3>
+          <a
+          href={`https://leetcode.com/${leetcodeUsername}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors"
+          >
+          @{leetcodeUsername}
+          </a>
+        </div>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm">
+        <div className="px-3 py-1 rounded-full bg-white/10 dark:bg-gray-800/30 border border-white/10 dark:border-gray-700/30">
+          <span className="text-gray-700 dark:text-gray-400">Rank: </span>
+          <span className="text-yellow-500 dark:text-yellow-400 font-medium">{leetcodeData.ranking?.toLocaleString() || 'N/A'}</span>
+        </div>
+        <div className="px-3 py-1 rounded-full bg-white/10 dark:bg-gray-800/30 border border-white/10 dark:border-gray-700/30">
+          <span className="text-gray-700 dark:text-gray-400">Acceptance: </span>
+          <span className="text-green-500 dark:text-green-400 font-medium">{leetcodeData.acceptanceRate}%</span>
+        </div>
+        </div>
+      </div>
+
+      {/* LC STATS */}
+      <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+        {[
+        {
+          label: 'Questions Solved',
+          value: leetcodeData.totalSolved,
+          icon: HiCheck,
+          color: 'text-emerald-500 dark:text-emerald-400',
+          bgColor: 'bg-emerald-500/5 dark:bg-emerald-400/10',
+          borderColor: 'border-emerald-500/20 dark:border-emerald-400/20'
+        },
+        {
+          label: 'Acceptance Rate',
+          value: `${leetcodeData.acceptanceRate}%`,
+          icon: HiChartBar,
+          color: 'text-blue-500 dark:text-blue-400',
+          bgColor: 'bg-blue-500/5 dark:bg-blue-400/10',
+          borderColor: 'border-blue-500/20 dark:border-blue-400/20'
+        },
+        {
+          label: 'Submission Count',
+          value: leetcodeData.totalSubmissions || '0',
+          icon: HiServer,
+          color: 'text-purple-500 dark:text-purple-400',
+          bgColor: 'bg-purple-500/5 dark:bg-purple-400/10',
+          borderColor: 'border-purple-500/20 dark:border-purple-400/20'
+        },
+        {
+          label: 'Global Ranking',
+          value: leetcodeData.ranking?.toLocaleString() || 'N/A',
+          icon: HiTrendingUp,
+          color: 'text-yellow-500 dark:text-yellow-400',
+          bgColor: 'bg-yellow-500/5 dark:bg-yellow-400/10',
+          borderColor: 'border-yellow-500/20 dark:border-yellow-400/20'
+        }
+        ].map((stat, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ y: -2, scale: 1.02 }}
+          className={`p-3 sm:p-4 rounded-xl border ${stat.borderColor} ${stat.bgColor}
+              backdrop-blur-sm shadow-sm`}
+        >
+          <div className="flex items-center gap-2 mb-1 sm:mb-2">
+          <stat.icon className={`w-4 sm:w-5 h-4 sm:h-5 ${stat.color}`} />
+          <span className="text-xs text-gray-600 dark:text-gray-400">{stat.label}</span>
+          </div>
+          <p className={`text-lg sm:text-xl font-bold ${stat.color}`}>
+          {stat.value}
+          </p>
+        </motion.div>
+        ))}
+      </div>
+
+      {/* Question Distribution */}
+      <div className="grid grid-cols-3 gap-3 sm:gap-4">
+        {[
+        {
+          label: 'Easy Questions',
+          solved: leetcodeData.easySolved,
+          total: leetcodeData.totalEasy,
+          icon: HiStar,
+          color: 'text-green-500 dark:text-green-400',
+          bgColor: 'bg-green-500/5 dark:bg-green-500/10',
+          borderColor: 'border-green-500/20 dark:border-green-500/20'
+        },
+        {
+          label: 'Medium Questions',
+          solved: leetcodeData.mediumSolved,
+          total: leetcodeData.totalMedium,
+          icon: HiPuzzle,
+          color: 'text-yellow-500 dark:text-yellow-400',
+          bgColor: 'bg-yellow-500/5 dark:bg-yellow-500/10',
+          borderColor: 'border-yellow-500/20 dark:border-yellow-500/20'
+        },
+        {
+          label: 'Hard Questions',
+          solved: leetcodeData.hardSolved,
+          total: leetcodeData.totalHard,
+          icon: HiCode,
+          color: 'text-red-500 dark:text-red-400',
+          bgColor: 'bg-red-500/5 dark:bg-red-500/10',
+          borderColor: 'border-red-500/20 dark:border-red-500/20'
+        }
+        ].map((category, index) => (
+        <motion.div
+          key={index}
+          whileHover={{ scale: 1.02 }}
+          className={`flex items-center gap-3 p-3 rounded-lg ${category.bgColor} 
+              border ${category.borderColor} backdrop-blur-sm shadow-sm`}
+        >
+          <category.icon className={`w-5 h-5 ${category.color}`} />
+          <div>
+          <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-300">{category.label}</p>
+          <p className={`text-xs sm:text-sm font-medium ${category.color}`}>
+            {category.solved} / {category.total}
+          </p>
+          </div>
+        </motion.div>
+        ))}
       </div>
       </motion.div>
     );
   };
 
-const renderLeetcodeActivity = () => {
-    if (!leetcodeUsername) return null;
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center p-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
-            </div>
-        );
-    }
-    if (error) {
-        return (
-            <div className="text-red-400 text-center p-6 bg-red-500/10 rounded-lg border border-red-500/20">
-                {error}
-            </div>
-        );
-    }
-    if (!leetcodeData) return null;
-
-    const statCards = [
-        { 
-            label: 'Problems Solved',
-            value: leetcodeData.totalSolved,
-            total: leetcodeData.totalQuestions,
-            icon: HiCode,
-            color: 'from-blue-500 to-purple-500',
-            subtext: `${((leetcodeData.totalSolved / leetcodeData.totalQuestions) * 100).toFixed(1)}% Complete`
-        },
-        { 
-            label: 'Easy Problems',
-            value: leetcodeData.easySolved,
-            total: leetcodeData.totalEasy,
-            icon: HiStar,
-            color: 'from-green-500 to-emerald-500',
-            subtext: `${((leetcodeData.easySolved / leetcodeData.totalEasy) * 100).toFixed(1)}% Solved`
-        },
-        { 
-            label: 'Medium Problems',
-            value: leetcodeData.mediumSolved,
-            total: leetcodeData.totalMedium,
-            icon: HiPuzzle,
-            color: 'from-yellow-500 to-orange-500',
-            subtext: `${((leetcodeData.mediumSolved / leetcodeData.totalMedium) * 100).toFixed(1)}% Solved`
-        },
-        { 
-            label: 'Hard Problems',
-            value: leetcodeData.hardSolved,
-            total: leetcodeData.totalHard,
-            icon: HiTrendingUp,
-            color: 'from-red-500 to-pink-500',
-            subtext: `${((leetcodeData.hardSolved / leetcodeData.totalHard) * 100).toFixed(1)}% Solved`
-        }
-    ];
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="p-4 sm:p-6 rounded-xl bg-white/5 border border-white/10 space-y-4 sm:space-y-6"
-        >
-            {/* Header with Stats */}
-            <div className="flex flex-col sm:flex-row justify-between gap-4">
-                <div className="flex items-center gap-3">
-                    <SiLeetcode className="w-6 h-6 text-[#FFA116]" />
-                    <div>
-                        <h3 className="text-lg font-semibold text-white">LeetCode Stats</h3>
-                        <a
-                            href={`https://leetcode.com/${leetcodeUsername}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm text-gray-400 hover:text-white transition-colors"
-                        >
-                            @{leetcodeUsername}
-                        </a>
-                    </div>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm">
-                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                        <span className="text-gray-400">Rank: </span>
-                        <span className="text-yellow-400 font-medium">{leetcodeData.ranking?.toLocaleString() || 'N/A'}</span>
-                    </div>
-                    <div className="px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                        <span className="text-gray-400">Acceptance: </span>
-                        <span className="text-green-400 font-medium">{leetcodeData.acceptanceRate}%</span>
-                    </div>
-                </div>
-            </div>
-
-            {/* LC STATS */}
-            <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-                {[
-                    {
-                        label: 'Questions Solved',
-                        value: leetcodeData.totalSolved,
-                        icon: HiCheck,
-                        color: 'text-emerald-400',
-                        bgColor: 'bg-emerald-400/10',
-                        borderColor: 'border-emerald-400/20'
-                    },
-                    {
-                        label: 'Acceptance Rate',
-                        value: `${leetcodeData.acceptanceRate}%`,
-                        icon: HiChartBar,
-                        color: 'text-blue-400',
-                        bgColor: 'bg-blue-400/10',
-                        borderColor: 'border-blue-400/20'
-                    },
-                    {
-                        label: 'Submission Count',
-                        value: leetcodeData.totalSubmissions || '0',
-                        icon: HiServer,
-                        color: 'text-purple-400',
-                        bgColor: 'bg-purple-400/10',
-                        borderColor: 'border-purple-400/20'
-                    },
-                    {
-                        label: 'Global Ranking',
-                        value: leetcodeData.ranking?.toLocaleString() || 'N/A',
-                        icon: HiTrendingUp,
-                        color: 'text-yellow-400',
-                        bgColor: 'bg-yellow-400/10',
-                        borderColor: 'border-yellow-400/20'
-                    }
-                ].map((stat, index) => (
-                    <motion.div
-                        key={index}
-                        whileHover={{ y: -2 }}
-                        className={`p-3 sm:p-4 rounded-xl border ${stat.borderColor} ${stat.bgColor}`}
-                    >
-                        <div className="flex items-center gap-2 mb-1 sm:mb-2">
-                            <stat.icon className={`w-4 sm:w-5 h-4 sm:h-5 ${stat.color}`} />
-                            <span className="text-xs text-gray-400">{stat.label}</span>
-                        </div>
-                        <p className={`text-lg sm:text-xl font-bold ${stat.color}`}>
-                            {stat.value}
-                        </p>
-                    </motion.div>
-                ))}
-            </div>
-
-            {/* Question Distribution */}
-            <div className="grid grid-cols-2 xs:grid-cols-3 gap-3 sm:gap-4">
-                {[
-                    {
-                        label: 'Easy Questions',
-                        solved: leetcodeData.easySolved,
-                        total: leetcodeData.totalEasy,
-                        icon: HiStar,
-                        color: 'text-green-400'
-                    },
-                    {
-                        label: 'Medium Questions',
-                        solved: leetcodeData.mediumSolved,
-                        total: leetcodeData.totalMedium,
-                        icon: HiPuzzle,
-                        color: 'text-yellow-400'
-                    },
-                    {
-                        label: 'Hard Questions',
-                        solved: leetcodeData.hardSolved,
-                        total: leetcodeData.totalHard,
-                        icon: HiCode,
-                        color: 'text-red-400'
-                    }
-                ].map((category, index) => (
-                    <motion.div
-                        key={index}
-                        whileHover={{ scale: 1.02 }}
-                        className="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/10"
-                    >
-                        <category.icon className={`w-5 h-5 ${category.color}`} />
-                        <div>
-                            <p className="text-xs sm:text-sm text-gray-400">{category.label}</p>
-                            <p className={`text-xs sm:text-sm font-medium ${category.color}`}>
-                                {category.solved} / {category.total}
-                            </p>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
-        </motion.div>
-    );
-};
-
   return (
-    <CardContainer title="Coding Activity">
+    <CardContainer 
+      title="Coding Activity"
+      icon={<HiCode className="w-6 h-6" />}
+      subtitle="GitHub contributions and LeetCode progress"
+    >
       <div className="space-y-6">
         {githubUsername && renderGithubActivity()}
         {leetcodeUsername && renderLeetcodeActivity()}

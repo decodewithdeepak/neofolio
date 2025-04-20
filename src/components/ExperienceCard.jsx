@@ -1,12 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HiCalendar, HiOfficeBuilding, HiChip } from 'react-icons/hi';
-import { FaBriefcase } from 'react-icons/fa'; // Changed to FaBriefcase for better visibility
+import { FaBriefcase } from 'react-icons/fa';
 import CardContainer from './CardContainer';
 
 const ExperienceCard = ({ experiences = [] }) => {
   return (
-    <CardContainer title="Experience">
+    <CardContainer 
+      title="Experience" 
+      icon={<FaBriefcase className="w-6 h-6" />}
+      subtitle="My professional journey"
+    >
       <div className="relative pl-8 space-y-12">
         {/* Vertical Timeline Line */}
         <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent" />
@@ -19,16 +23,17 @@ const ExperienceCard = ({ experiences = [] }) => {
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
           >
-            {/* Timeline Node with Briefcase Icon */}
+            {/* Timeline Node */}
             <div className="absolute -left-6">
               <motion.div
                 whileHover={{ scale: 1.1 }}
-                className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5"
+                className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 shadow-lg"
               >
-                <div className="w-full h-full rounded-xl bg-gray-900 
+                <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80
                              flex items-center justify-center relative overflow-hidden 
-                             hover:bg-gray-800 transition-colors duration-300">
-                  <FaBriefcase className="w-5 h-5 text-blue-400" /> {/* Changed styling here */}
+                             backdrop-blur-sm hover:bg-white/60 dark:hover:bg-gray-800/60 
+                             transition-colors duration-300">
+                  <FaBriefcase className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                 </div>
               </motion.div>
             </div>
@@ -37,10 +42,10 @@ const ExperienceCard = ({ experiences = [] }) => {
             <motion.div
               whileHover={{ y: -5 }}
               className="group relative overflow-hidden rounded-2xl bg-gradient-to-br 
-                       from-white/50 to-white/10 dark:from-gray-800/50 dark:to-gray-800/10
+                       from-white/80 to-white/40 dark:from-gray-800/50 dark:to-gray-800/30
                        border border-white/20 dark:border-gray-700/20 p-6
                        hover:border-blue-500/20 dark:hover:border-blue-500/20
-                       transition-all duration-300"
+                       transition-all duration-300 shadow-lg backdrop-blur-sm"
             >
               {/* Card Background Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 
@@ -64,7 +69,7 @@ const ExperienceCard = ({ experiences = [] }) => {
 
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full
                                bg-gradient-to-r from-blue-500/10 to-purple-500/10 
-                               border border-blue-500/20">
+                               border border-blue-500/20 shadow-sm">
                     <HiCalendar className="w-4 h-4 text-blue-500" />
                     <span className="text-sm text-gray-700 dark:text-gray-300">
                       {exp.startDate} - {exp.endDate || 'Present'}
@@ -73,7 +78,7 @@ const ExperienceCard = ({ experiences = [] }) => {
                 </div>
 
                 {/* Description */}
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
                   {exp.description}
                 </p>
 

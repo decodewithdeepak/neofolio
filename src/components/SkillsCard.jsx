@@ -5,6 +5,7 @@ import {
   HiTemplate, HiCloud, HiPuzzle, HiSparkles, HiChevronDown,
   HiStar, HiLightningBolt, HiAcademicCap
 } from 'react-icons/hi';
+import CardContainer from './CardContainer';
 
 const SkillsCard = ({ skills = [] }) => {
   const [expandedCategory, setExpandedCategory] = useState(null);
@@ -264,35 +265,25 @@ const SkillsCard = ({ skills = [] }) => {
   };
 
   return (
-    <div className="relative backdrop-blur-xl bg-white/60 dark:bg-gray-800/60 
-                    rounded-2xl shadow-2xl p-4 sm:p-8 border border-white/20">
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden rounded-2xl">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 -translate-x-1/2 translate-y-1/2 rounded-full blur-3xl"></div>
+    <CardContainer 
+      title="Skills" 
+      icon={<HiCode className="w-6 h-6" />}
+      subtitle="Technologies and tools I work with"
+    >
+      <div className={`grid grid-cols-1 gap-4 sm:gap-6 ${getGridColumns(skills.length)} ${getCardWidth(skills.length)}`}>
+        {skills.map((category, idx) => (
+          <React.Fragment key={idx}>
+            {/* Show compact version on mobile, full version on desktop */}
+            <div className="block md:hidden">
+              <CompactSkillCard category={category} />
+            </div>
+            <div className="hidden md:block">
+              <DesktopSkillCard category={category} />
+            </div>
+          </React.Fragment>
+        ))}
       </div>
-
-      <div className="relative">
-        <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 
-                      to-purple-600 bg-clip-text text-transparent mb-6 sm:mb-8">
-          Skills
-        </h2>
-
-        <div className={`grid grid-cols-1 gap-4 sm:gap-6 ${getGridColumns(skills.length)} ${getCardWidth(skills.length)}`}>
-          {skills.map((category, idx) => (
-            <>
-              {/* Show compact version on mobile, full version on desktop */}
-              <div className="block md:hidden">
-                <CompactSkillCard key={`mobile-${idx}`} category={category} />
-              </div>
-              <div className="hidden md:block">
-                <DesktopSkillCard key={`desktop-${idx}`} category={category} />
-              </div>
-            </>
-          ))}
-        </div>
-      </div>
-    </div>
+    </CardContainer>
   );
 };
 

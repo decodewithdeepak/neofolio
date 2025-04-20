@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { HiExternalLink, HiCalendar, HiOfficeBuilding } from 'react-icons/hi';
-import { FaTrophy, FaMedal, FaAward, FaCertificate } from 'react-icons/fa'; // Import achievement icons
+import { FaTrophy, FaMedal, FaAward, FaCertificate } from 'react-icons/fa';
 import CardContainer from './CardContainer';
 
 const AchievementCard = ({ achievements = [] }) => {
@@ -15,7 +15,11 @@ const AchievementCard = ({ achievements = [] }) => {
   };
 
   return (
-    <CardContainer title="Achievements">
+    <CardContainer 
+      title="Achievements" 
+      icon={<FaTrophy className="w-6 h-6" />}
+      subtitle="Recognition and accomplishments"
+    >
       <div className="flex flex-col gap-6">
         {achievements.map((achievement, index) => {
           const AchievementIcon = getAchievementIcon(achievement);
@@ -23,82 +27,98 @@ const AchievementCard = ({ achievements = [] }) => {
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ x: -5 }}
-              className="group relative flex items-center overflow-visible rounded-xl bg-gradient-to-br 
-                     from-white/40 to-white/10 dark:from-gray-800/40 dark:to-gray-800/10 
-                     border border-white/20 dark:border-gray-700/20 
-                     hover:border-blue-500/20 dark:hover:border-blue-500/20
-                     transition-all duration-300 mt-6"
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-xl bg-gradient-to-br 
+                       from-white/80 to-white/40 dark:from-gray-800/50 dark:to-gray-800/30
+                       border border-white/20 dark:border-gray-700/20 p-5
+                       hover:border-blue-500/20 dark:hover:border-blue-500/20
+                       transition-all duration-300 shadow-lg backdrop-blur-sm"
             >
-              {/* Enhanced Achievement Icon */}
-              <div className="flex-shrink-0 mr-6">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 
-                           p-0.5 shadow-lg shadow-yellow-500/25"
-                >
-                  <div className="w-full h-full rounded-2xl bg-white dark:bg-gray-900 
-                               flex items-center justify-center relative overflow-hidden group">
-                    {/* Animated Background */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,0,0.1),transparent_70%)]
-                                 animate-pulse" />
-                    
-                    {/* Icon */}
-                    <AchievementIcon className="w-8 h-8 text-yellow-500 transform 
-                                            group-hover:scale-110 transition-transform duration-300
-                                            drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
-                  </div>
-                </motion.div>
-              </div>
+              {/* Card Background Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-pink-500/5 
+                           opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="flex-1 p-4 space-y-4">
-                {/* Title */}
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white 
-                           group-hover:text-transparent group-hover:bg-clip-text
-                           group-hover:bg-gradient-to-r group-hover:from-blue-500 
-                           group-hover:to-purple-500 transition-colors duration-300">
-                  {achievement.title}
-                </h3>
-
-                {/* Issuer and Date */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-                    <HiOfficeBuilding className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{achievement.issuer}</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-gray-500">
-                    <HiCalendar className="w-4 h-4 flex-shrink-0" />
-                    <span className="text-sm">{achievement.date}</span>
-                  </div>
+              <div className="relative flex items-start gap-5">
+                {/* Enhanced Achievement Icon */}
+                <div className="flex-shrink-0">
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 
+                             p-0.5 shadow-lg shadow-yellow-500/25"
+                  >
+                    <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 
+                                 backdrop-blur-sm flex items-center justify-center relative overflow-hidden group
+                                 hover:bg-white/60 dark:hover:bg-gray-800/60 transition-colors duration-300">
+                      {/* Animated Background */}
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,182,0,0.1),transparent_70%)]
+                                   animate-pulse" />
+                      
+                      {/* Icon */}
+                      <AchievementIcon className="w-7 h-7 text-yellow-500 transform 
+                                              group-hover:scale-110 transition-transform duration-300
+                                              drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]" />
+                    </div>
+                  </motion.div>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed line-clamp-3">
-                  {achievement.description}
-                </p>
+                <div className="flex-1 space-y-3">
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white 
+                               group-hover:text-transparent group-hover:bg-clip-text
+                               group-hover:bg-gradient-to-r group-hover:from-yellow-500 
+                               group-hover:to-orange-500 transition-colors duration-300">
+                    {achievement.title}
+                  </h3>
 
-                {/* Certificate Link */}
-                {achievement.url && (
-                  <motion.a
-                    href={achievement.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                           bg-gradient-to-r from-blue-500 to-purple-500 
-                           hover:from-blue-600 hover:to-purple-600
-                           text-white text-sm font-medium shadow-lg shadow-blue-500/25 
-                           transition-all duration-300"
-                  >
-                    <span>View Certificate</span>
-                    <HiExternalLink className="w-4 h-4" />
-                  </motion.a>
-                )}
+                  {/* Issuer and Date */}
+                  <div className="flex flex-wrap gap-4">
+                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                      <HiOfficeBuilding className="w-4 h-4 flex-shrink-0 text-yellow-500" />
+                      <span className="text-sm font-medium">{achievement.issuer}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                      <HiCalendar className="w-4 h-4 flex-shrink-0 text-yellow-500" />
+                      <span className="text-sm">{achievement.date}</span>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                    {achievement.description}
+                  </p>
+
+                  {/* Certificate Link */}
+                  {achievement.url && (
+                    <motion.a
+                      href={achievement.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="inline-flex items-center gap-2 px-4 py-2 mt-2 rounded-lg
+                             bg-gradient-to-r from-yellow-500 to-orange-500 
+                             hover:from-yellow-600 hover:to-orange-600
+                             text-white text-sm font-medium shadow-lg shadow-yellow-500/25 
+                             transition-all duration-300"
+                    >
+                      <span>View Certificate</span>
+                      <HiExternalLink className="w-4 h-4" />
+                    </motion.a>
+                  )}
+                </div>
+              </div>
+
+              {/* Decorative Corner Lines */}
+              <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none opacity-0 
+                           group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute bottom-0 right-0 w-px h-24 
+                             bg-gradient-to-t from-yellow-500/50 to-transparent" />
+                <div className="absolute bottom-0 right-0 h-px w-24 
+                             bg-gradient-to-r from-transparent to-yellow-500/50" />
               </div>
             </motion.div>
           );
