@@ -172,9 +172,13 @@ const SkillsCard = ({ skills = [] }) => {
             return (
               <motion.div
                 key={index}
-                whileHover={{ scale: 1.05 }}
                 className={`flex items-center gap-2 p-1.5 rounded-lg ${levelInfo.bgColor} 
-                          border ${levelInfo.borderColor}`}
+                          border ${levelInfo.borderColor} 
+                          ${levelInfo.color === 'text-yellow-400' ? 'hover:border-yellow-400/50' : 
+                            levelInfo.color === 'text-blue-400' ? 'hover:border-blue-400/50' :
+                            levelInfo.color === 'text-purple-400' ? 'hover:border-purple-400/50' :
+                            'hover:border-green-400/50'} 
+                          transition-all duration-300`}
               >
                 <SkillLogo skillName={skill.name} />
                 <span className="text-sm font-medium text-white">
@@ -225,9 +229,13 @@ const SkillsCard = ({ skills = [] }) => {
           return (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.02 }}
               className={`flex items-center gap-3 p-3 rounded-lg ${levelInfo.bgColor} 
-                        border ${levelInfo.borderColor}`}
+                        border ${levelInfo.borderColor}
+                        ${levelInfo.color === 'text-yellow-400' ? 'hover:border-yellow-400/50' : 
+                          levelInfo.color === 'text-blue-400' ? 'hover:border-blue-400/50' :
+                          levelInfo.color === 'text-purple-400' ? 'hover:border-purple-400/50' :
+                          'hover:border-green-400/50'} 
+                        transition-all duration-300`}
             >
               <SkillLogo skillName={skill.name} />
               

@@ -19,111 +19,101 @@ const EducationCard = ({ education = [] }) => {
       icon={<HiAcademicCap className="w-6 h-6" />}
       subtitle="Academic qualifications and learning journey"
     >
-      <div className="relative">
-        <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/50 via-purple-500/50 to-transparent" />
+      <div className="relative pl-8 space-y-12">
+        {/* Vertical Timeline Line */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-purple-500 to-transparent" />
 
-        <div className="space-y-8 sm:space-y-12">
-          {education.map((edu, index) => {
-            const EducationIcon = getEducationIcon(edu);
+        {education.map((edu, index) => {
+          const EducationIcon = getEducationIcon(edu);
 
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="relative pl-12 sm:pl-16"
-              >
-                <div className="absolute left-0 top-0 z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 
-                             p-0.5 shadow-lg shadow-blue-500/25"
-                  >
-                    <div className="w-full h-full rounded-2xl bg-white/80 dark:bg-gray-900/80 
-                                 backdrop-blur-sm flex items-center justify-center relative 
-                                 overflow-hidden group transition-colors duration-300
-                                 hover:bg-white/60 dark:hover:bg-gray-800/60">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_70%)]
-                                   animate-pulse" />
-                      <EducationIcon className="w-6 h-6 sm:w-7 sm:h-7 text-blue-500 transform 
-                                            group-hover:scale-110 transition-transform duration-300
-                                            drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
-                    </div>
-                  </motion.div>
+          return (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              {/* Timeline Node */}
+              <div className="absolute -left-6">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 p-0.5 shadow-lg">
+                  <div className="w-full h-full rounded-xl bg-white/80 dark:bg-gray-900/80 flex items-center justify-center">
+                    <EducationIcon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                  </div>
                 </div>
+              </div>
 
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  className="group relative bg-gradient-to-br from-white/80 to-white/40 
-                           dark:from-gray-800/50 dark:to-gray-800/30
-                           backdrop-blur-lg rounded-xl border border-white/20 dark:border-gray-700/20 
-                           p-4 sm:p-6 shadow-lg
-                           hover:border-blue-500/20 dark:hover:border-blue-500/20 
-                           transition-all duration-300"
-                >
-                  {/* Card Background Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5 
-                               rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                  <div className="relative">
-                    <div className="mb-3 sm:mb-4">
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white
-                                   group-hover:text-transparent group-hover:bg-clip-text
-                                   group-hover:bg-gradient-to-r group-hover:from-blue-500 
-                                   group-hover:to-purple-500 transition-colors duration-300">
+              {/* Education Card */}
+              <motion.div
+                className="relative overflow-hidden rounded-2xl bg-gradient-to-br 
+                         from-white/80 to-white/40 dark:from-gray-800/50 dark:to-gray-800/30
+                         border border-transparent p-6
+                         hover:border-blue-500 transition-all duration-300 shadow-lg backdrop-blur-sm"
+              >
+                <div className="relative space-y-4">
+                  {/* Header */}
+                  <div className="flex flex-wrap items-start justify-between gap-4">
+                    <div className="space-y-1">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                         {edu.degree}
                       </h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium mt-1 text-sm sm:text-base">
-                        {edu.school}
-                      </p>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm text-gray-700 dark:text-gray-400 mb-3 sm:mb-4">
-                      <div className="flex items-center gap-1">
-                        <HiCalendar className="w-4 h-4 text-blue-500" />
-                        <span>
-                          {edu.startYear} - {edu.endYear || 'Present'}
-                        </span>
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <FaUniversity className="w-4 h-4" />
+                        <span className="font-medium">{edu.school}</span>
                       </div>
-                      {edu.location && (
-                        <div className="flex items-center gap-1">
-                          <HiLocationMarker className="w-4 h-4 text-blue-500" />
-                          <span>{edu.location}</span>
-                        </div>
-                      )}
-                      {edu.grade && (
-                        <span className="text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full 
-                                       bg-blue-500/10 border border-blue-500/20">
-                          <span className="flex items-center gap-1 text-blue-600 dark:text-blue-400">
-                            <HiStar className="w-3 h-3 sm:w-4 sm:h-4" />
-                            {edu.grade}
-                          </span>
-                        </span>
-                      )}
                     </div>
 
-                    {edu.description && (
-                      <p className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm leading-relaxed">
-                        {edu.description}
-                      </p>
-                    )}
-
-                    {/* Decorative Corner Lines */}
-                    <div className="absolute bottom-0 right-0 w-24 h-24 pointer-events-none opacity-0 
-                                 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute bottom-0 right-0 w-px h-24 
-                                   bg-gradient-to-t from-blue-500/50 to-transparent" />
-                      <div className="absolute bottom-0 right-0 h-px w-24 
-                                   bg-gradient-to-r from-transparent to-blue-500/50" />
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full
+                                 bg-gradient-to-r from-blue-500/10 to-purple-500/10 
+                                 border border-blue-500/20 shadow-sm">
+                      <HiCalendar className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
+                        {edu.startYear} - {edu.endYear || 'Present'}
+                      </span>
                     </div>
                   </div>
-                </motion.div>
+
+                  {/* Description */}
+                  {edu.description && (
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                      {edu.description}
+                    </p>
+                  )}
+
+                  {/* Additional Info */}
+                  <div className="flex flex-wrap gap-2">
+                    {edu.location && (
+                      <motion.span
+                        className="flex items-center gap-1.5 px-3 py-1 text-sm rounded-full
+                                 bg-white/50 dark:bg-gray-800/50
+                                 border border-gray-200/50 dark:border-gray-700/50
+                                 hover:border-blue-500/50
+                                 text-gray-700 dark:text-gray-300
+                                 transition-all duration-200"
+                      >
+                        <HiLocationMarker className="w-3.5 h-3.5 text-blue-500" />
+                        {edu.location}
+                      </motion.span>
+                    )}
+                    {edu.grade && (
+                      <motion.span
+                        className="flex items-center gap-1.5 px-3 py-1 text-sm rounded-full
+                                 bg-white/50 dark:bg-gray-800/50
+                                 border border-gray-200/50 dark:border-gray-700/50
+                                 hover:border-blue-500/50
+                                 text-gray-700 dark:text-gray-300
+                                 transition-all duration-200"
+                      >
+                        <HiStar className="w-3.5 h-3.5 text-blue-500" />
+                        {edu.grade}
+                      </motion.span>
+                    )}
+                  </div>
+                </div>
               </motion.div>
-            );
-          })}
-        </div>
+            </motion.div>
+          );
+        })}
       </div>
     </CardContainer>
   );

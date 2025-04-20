@@ -45,7 +45,6 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        whileHover={{ y: -5 }}
         className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
                  dark:from-gray-800/60 dark:to-gray-900/20
                  border border-white/20 dark:border-gray-700/20
@@ -127,7 +126,6 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
       <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -5 }}
       transition={{ delay: 0.2 }}
       className="p-6 rounded-xl bg-gradient-to-br from-white/60 to-white/20 
            dark:from-gray-800/60 dark:to-gray-900/20 
@@ -183,7 +181,8 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiCheck,
           color: 'text-emerald-500 dark:text-emerald-400',
           bgColor: 'bg-emerald-500/5 dark:bg-emerald-400/10',
-          borderColor: 'border-emerald-500/20 dark:border-emerald-400/20'
+          borderColor: 'border-emerald-500/20 dark:border-emerald-400/20',
+          hoverBorderColor: 'hover:border-emerald-500/50 dark:hover:border-emerald-400/50'
         },
         {
           label: 'Acceptance Rate',
@@ -191,7 +190,8 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiChartBar,
           color: 'text-blue-500 dark:text-blue-400',
           bgColor: 'bg-blue-500/5 dark:bg-blue-400/10',
-          borderColor: 'border-blue-500/20 dark:border-blue-400/20'
+          borderColor: 'border-blue-500/20 dark:border-blue-400/20',
+          hoverBorderColor: 'hover:border-blue-500/50 dark:hover:border-blue-400/50'
         },
         {
           label: 'Submission Count',
@@ -199,7 +199,8 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiServer,
           color: 'text-purple-500 dark:text-purple-400',
           bgColor: 'bg-purple-500/5 dark:bg-purple-400/10',
-          borderColor: 'border-purple-500/20 dark:border-purple-400/20'
+          borderColor: 'border-purple-500/20 dark:border-purple-400/20',
+          hoverBorderColor: 'hover:border-purple-500/50 dark:hover:border-purple-400/50'
         },
         {
           label: 'Global Ranking',
@@ -207,14 +208,15 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiTrendingUp,
           color: 'text-yellow-500 dark:text-yellow-400',
           bgColor: 'bg-yellow-500/5 dark:bg-yellow-400/10',
-          borderColor: 'border-yellow-500/20 dark:border-yellow-400/20'
+          borderColor: 'border-yellow-500/20 dark:border-yellow-400/20',
+          hoverBorderColor: 'hover:border-yellow-500/50 dark:hover:border-yellow-400/50'
         }
         ].map((stat, index) => (
         <motion.div
           key={index}
-          whileHover={{ y: -2, scale: 1.02 }}
+          whileHover={{ y: -2 }}
           className={`p-3 sm:p-4 rounded-xl border ${stat.borderColor} ${stat.bgColor}
-              backdrop-blur-sm shadow-sm`}
+              backdrop-blur-sm shadow-sm ${stat.hoverBorderColor} transition-all duration-300`}
         >
           <div className="flex items-center gap-2 mb-1 sm:mb-2">
           <stat.icon className={`w-4 sm:w-5 h-4 sm:h-5 ${stat.color}`} />
@@ -228,7 +230,7 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
       </div>
 
       {/* Question Distribution */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
         {[
         {
           label: 'Easy Questions',
@@ -237,7 +239,8 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiStar,
           color: 'text-green-500 dark:text-green-400',
           bgColor: 'bg-green-500/5 dark:bg-green-500/10',
-          borderColor: 'border-green-500/20 dark:border-green-500/20'
+          borderColor: 'border-green-500/20 dark:border-green-500/20',
+          hoverBorderColor: 'hover:border-green-500/50 dark:hover:border-green-500/50'
         },
         {
           label: 'Medium Questions',
@@ -246,7 +249,8 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiPuzzle,
           color: 'text-yellow-500 dark:text-yellow-400',
           bgColor: 'bg-yellow-500/5 dark:bg-yellow-500/10',
-          borderColor: 'border-yellow-500/20 dark:border-yellow-500/20'
+          borderColor: 'border-yellow-500/20 dark:border-yellow-500/20',
+          hoverBorderColor: 'hover:border-yellow-500/50 dark:hover:border-yellow-500/50'
         },
         {
           label: 'Hard Questions',
@@ -255,14 +259,14 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
           icon: HiCode,
           color: 'text-red-500 dark:text-red-400',
           bgColor: 'bg-red-500/5 dark:bg-red-500/10',
-          borderColor: 'border-red-500/20 dark:border-red-500/20'
+          borderColor: 'border-red-500/20 dark:border-red-500/20',
+          hoverBorderColor: 'hover:border-red-500/50 dark:hover:border-red-500/50'
         }
         ].map((category, index) => (
         <motion.div
           key={index}
-          whileHover={{ scale: 1.02 }}
           className={`flex items-center gap-3 p-3 rounded-lg ${category.bgColor} 
-              border ${category.borderColor} backdrop-blur-sm shadow-sm`}
+              border ${category.borderColor} backdrop-blur-sm shadow-sm ${category.hoverBorderColor} transition-all duration-300`}
         >
           <category.icon className={`w-5 h-5 ${category.color}`} />
           <div>

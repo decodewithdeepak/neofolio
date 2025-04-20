@@ -5,11 +5,11 @@ import { db } from '../config/firebase';
 import { HiMenu, HiX } from 'react-icons/hi';
 import ProfileCard from '../components/ProfileCard';
 import SkillsCard from '../components/SkillsCard';
-import ExperienceCard from '../components/ExperienceCard';
-import AchievementCard from '../components/AchievementCard';
-import ProjectCard from '../components/ProjectCard';
 import ActivityCard from '../components/ActivityCard';
+import ProjectCard from '../components/ProjectCard';
+import ExperienceCard from '../components/ExperienceCard';
 import EducationCard from '../components/EducationCard';
+import AchievementCard from '../components/AchievementCard';
 
 const Portfolio = () => {
   const { username } = useParams();
