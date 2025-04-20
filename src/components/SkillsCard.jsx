@@ -93,7 +93,7 @@ const SkillLogo = ({ skillName }) => {
 };
 
 const ResponsiveSkillCard = ({ category }) => (
-  <div className="backdrop-blur-xl bg-white/5 rounded-xl border border-white/10">
+  <div className="backdrop-blur-sm rounded-xl border border-white/10">
     {/* Header */}
     <div className="p-3 md:p-4 border-b border-white/10 md:border-b">
       <div className="flex items-center gap-3">
