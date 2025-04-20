@@ -38,8 +38,8 @@ const AchievementCard = ({ achievements = [] }) => {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-pink-500/5" />
 
-              <div className="relative flex items-start gap-5">
-                <div className="flex-shrink-0">
+              <div className="relative flex flex-col md:flex-row items-center md:items-start gap-5">
+                <div className="flex-shrink-0 mb-4 md:mb-0">
                   <motion.div
                     className="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 
                              p-0.5 shadow-lg shadow-yellow-500/25"
@@ -54,12 +54,12 @@ const AchievementCard = ({ achievements = [] }) => {
                   </motion.div>
                 </div>
 
-                <div className="flex-1 space-y-3">
+                <div className="flex-1 space-y-3 text-center md:text-left">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {achievement.title}
                   </h3>
 
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap justify-center md:justify-start gap-4">
                     <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
                       <HiOfficeBuilding className="w-4 h-4 flex-shrink-0 text-yellow-500" />
                       <span className="text-sm font-medium">{achievement.issuer}</span>
@@ -75,20 +75,22 @@ const AchievementCard = ({ achievements = [] }) => {
                   </p>
 
                   {achievement.url && (
-                    <motion.a
-                      href={achievement.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2 }}
-                      className="inline-flex items-center gap-2 px-4 py-2 mt-2 rounded-lg
-                             bg-gradient-to-r from-yellow-500 to-orange-500 
-                             hover:from-yellow-600 hover:to-orange-600
-                             text-white text-sm font-medium shadow-lg shadow-yellow-500/25 
-                             transition-all duration-300"
-                    >
-                      <span>View Certificate</span>
-                      <HiExternalLink className="w-4 h-4" />
-                    </motion.a>
+                    <div className="flex justify-center md:justify-start">
+                      <motion.a
+                        href={achievement.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ y: -2 }}
+                        className="inline-flex items-center gap-2 px-4 py-2 mt-2 rounded-lg
+                               bg-gradient-to-r from-yellow-500 to-orange-500 
+                               hover:from-yellow-600 hover:to-orange-600
+                               text-white text-sm font-medium shadow-lg shadow-yellow-500/25 
+                               transition-all duration-300"
+                      >
+                        <span>View Certificate</span>
+                        <HiExternalLink className="w-4 h-4" />
+                      </motion.a>
+                    </div>
                   )}
                 </div>
               </div>
