@@ -73,12 +73,12 @@ const SkillLogo = ({ skillName }) => {
   }, [skillName]);
 
   if (loading) return (
-    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/10 flex items-center justify-center">
       <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
     </div>
   );
   if (error || !logoUrl) return (
-    <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+    <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/10 flex items-center justify-center">
       <HiCode className="w-4 h-4 text-gray-400" />
     </div>
   );
@@ -86,7 +86,7 @@ const SkillLogo = ({ skillName }) => {
     <img
       src={logoUrl}
       alt={skillName}
-      className="w-8 h-8 rounded-lg p-1.5 bg-white/10 object-contain"
+      className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg p-1.5 bg-white/10 object-contain"
       onError={() => setError(true)}
     />
   );
