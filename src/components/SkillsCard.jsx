@@ -114,29 +114,29 @@ const SkillsCard = ({ skills = [] }) => {
       icon: HiStar,
       text: 'Expert',
       color: 'text-yellow-400',
-      bgColor: 'bg-yellow-500/15',
-      borderColor: 'border-yellow-400/30'
+      bgColor: 'bg-yellow-500/10',
+      borderColor: 'border-yellow-800/60'
     };
     if (level >= 75) return {
       icon: HiLightningBolt,
       text: 'Advanced',
       color: 'text-blue-400',
-      bgColor: 'bg-blue-500/15',
-      borderColor: 'border-blue-400/30'
+      bgColor: 'bg-blue-500/10',
+      borderColor: 'border-blue-800/60'
     };
     if (level >= 60) return {
       icon: HiAcademicCap,
       text: 'Intermediate',
       color: 'text-purple-400',
-      bgColor: 'bg-purple-500/15',
-      borderColor: 'border-purple-400/30'
+      bgColor: 'bg-purple-500/10',
+      borderColor: 'border-purple-800/60'
     };
     return {
       icon: HiSparkles,
       text: 'Learning',
       color: 'text-green-400',
-      bgColor: 'bg-green-500/15',
-      borderColor: 'border-green-400/30'
+      bgColor: 'bg-green-500/10',
+      borderColor: 'border-green-800/60'
     };
   };
 
