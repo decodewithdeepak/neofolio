@@ -1,0 +1,36 @@
+/* Performance optimizations for smoother scrolling */
+
+/* Enable hardware acceleration for components */
+.transform-gpu,
+.card-container,
+.profile-section,
+.projects-section,
+.skills-section {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Reduce repaint on scrolling elements */
+.scroll-optimize {
+  contain: content;
+}
+
+/* Optimize blur effects by reducing quality on scroll */
+.scrolling .backdrop-blur-xl {
+  backdrop-filter: blur(8px);
+}
+.scrolling .blur-md {
+  filter: blur(6px);
+}
+
+/* Disable animations during scroll to improve performance */
+.scrolling .animate-blob {
+  animation-play-state: paused;
+}
+
+/* Optimize gradient transitions to use cheaper properties */
+.optimize-transitions {
+  transition-property: opacity, transform;
+  transition-duration: 300ms;
+}

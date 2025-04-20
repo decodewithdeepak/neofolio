@@ -1,23 +1,23 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 
-const CardContainer = ({ children, className, title, icon, subtitle }) => {
+// Memoize the component to prevent unnecessary re-renders
+const CardContainer = memo(({ children, className, title, icon, subtitle }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-50px 0px" }}
       transition={{ duration: 0.5 }}
-      className={`relative overflow-hidden backdrop-blur-2xl 
+      className={`transform-gpu relative overflow-hidden backdrop-blur-2xl 
                  bg-gradient-to-br from-gray-800/40 via-gray-800/25 to-gray-900/10
                  rounded-3xl shadow-2xl border border-gray-700/20
-                 transition-all duration-500 ${className}`}
+                 scroll-optimize ${className}`}
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0">
+      {/* Background Effects - Optimized with reduced complexity */}
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5"></div>
         <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
       </div>
 
       {/* Content Container */}
@@ -53,6 +53,8 @@ const CardContainer = ({ children, className, title, icon, subtitle }) => {
       </div>
     </motion.div>
   );
-};
+});
+
+CardContainer.displayName = 'CardContainer';
 
 export default CardContainer;

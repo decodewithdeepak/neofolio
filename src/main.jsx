@@ -14,6 +14,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import ErrorBoundary from './components/ErrorBoundary'
 import UsernameSetup from './components/UsernameSetup'
 import './index.css'
+import './styles/performance.css' // Import our performance optimizations
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

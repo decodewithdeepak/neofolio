@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
@@ -18,6 +18,10 @@ const Portfolio = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('profile');
   const [sections, setSections] = useState([{ id: 'profile', label: 'Profile' }]);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const prevActiveSectionRef = useRef(activeSection);
+  const activeSectionChangeTimeoutRef = useRef(null);
+  const scrollTimeoutRef = useRef(null);
 
   const [userData, setUserData] = useState({
     profile: {
@@ -35,6 +39,37 @@ const Portfolio = () => {
     achievements: [],
     education: []
   });
+
+  // Scroll performance optimization
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!isScrolling) {
+        document.body.classList.add('scrolling');
+        setIsScrolling(true);
+      }
+      
+      // Clear the timeout if it exists
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Set a timeout to remove the scrolling class after scrolling stops
+      scrollTimeoutRef.current = setTimeout(() => {
+        document.body.classList.remove('scrolling');
+        setIsScrolling(false);
+      }, 150);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      document.body.classList.remove('scrolling');
+    };
+  }, []);
 
   // Fetch user data
   useEffect(() => {
@@ -110,22 +145,45 @@ const Portfolio = () => {
     setSections(availableSections);
   }, [userData]);
 
-  // Scroll handling with Intersection Observer
+  // Optimized scroll handling with Intersection Observer
   useEffect(() => {
     if (!sections.length) return;
+    
+    // Debounced state update for active section
+    const debouncedSetActiveSection = (sectionId) => {
+      if (prevActiveSectionRef.current === sectionId) return;
+      
+      if (activeSectionChangeTimeoutRef.current) {
+        clearTimeout(activeSectionChangeTimeoutRef.current);
+      }
+      
+      activeSectionChangeTimeoutRef.current = setTimeout(() => {
+        setActiveSection(sectionId);
+        prevActiveSectionRef.current = sectionId;
+      }, 100); // Small debounce to avoid rapid state changes
+    };
 
     const observerOptions = {
       root: null,
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: [0, 0.1, 0.2] // Multiple thresholds for smoother detection
     };
 
     const observerCallback = (entries) => {
+      // Find the entry with the highest intersection ratio
+      let highestEntry = null;
+      let highestRatio = 0;
+      
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+        if (entry.isIntersecting && entry.intersectionRatio > highestRatio) {
+          highestRatio = entry.intersectionRatio;
+          highestEntry = entry;
         }
       });
+      
+      if (highestEntry) {
+        debouncedSetActiveSection(highestEntry.target.id);
+      }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
@@ -135,23 +193,32 @@ const Portfolio = () => {
       if (element) observer.observe(element);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (activeSectionChangeTimeoutRef.current) {
+        clearTimeout(activeSectionChangeTimeoutRef.current);
+      }
+    };
   }, [sections]);
 
-  const scrollToSection = (sectionId) => {
+  // Memoized scroll function for better performance
+  const scrollToSection = useCallback((sectionId) => {
     const section = document.getElementById(sectionId);
     if (section) {
       const navOffset = 150;
       const elementPosition = section.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+      const offsetPosition = elementPosition + window.scrollY - navOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+      // Using requestAnimationFrame for smoother scrolling
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       });
     }
     setIsMenuOpen(false);
-  };
+  }, []);
 
   const renderNavLinks = () => {
     if (!Array.isArray(sections)) return null;
