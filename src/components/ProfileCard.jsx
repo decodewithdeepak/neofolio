@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaTwitter, FaGlobe, FaCode, FaHackerrank } from 'react-icons/fa';
 import { SiLeetcode, SiGeeksforgeeks } from 'react-icons/si';
-import { HiMail, HiSparkles, HiLocationMarker, HiLink } from 'react-icons/hi';
+import { HiMail, HiSparkles, HiLocationMarker, HiLink, HiShare } from 'react-icons/hi';
 import CardContainer from './CardContainer';
 
 const getSocialIcon = (name) => {
@@ -21,6 +21,7 @@ const getSocialIcon = (name) => {
     case 'leetcode':
       return <SiLeetcode className="w-5 h-5 text-[#FFA116]" />;
     case 'geeksforgeeks':
+      return <FaGlobe className="w-5 h-5 text-[#2F8D46]" />;
     case 'gfg':
       return <SiGeeksforgeeks className="w-5 h-5 text-[#2F8D46]" />;
     case 'hackerrank':
@@ -51,6 +52,25 @@ const ProfileCard = ({ profile = {} }) => {
     location = ''
   } = profile;
 
+  // Function to handle sharing the portfolio
+  const handleShare = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: `${name}'s Portfolio`,
+          text: `Check out ${name}'s developer portfolio${title ? ` - ${title}` : ''}`,
+          url: window.location.href
+        });
+      } else {
+        // Fallback for browsers that don't support the Share API
+        navigator.clipboard.writeText(window.location.href);
+        alert('Portfolio link copied to clipboard!');
+      }
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  };
+
   return (
     <CardContainer className="transform-gpu">
       {/* Hero Banner Section */}
@@ -63,6 +83,22 @@ const ProfileCard = ({ profile = {} }) => {
           transition={{ duration: 1 }}
           className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/80"
         />
+        
+        {/* Share Button */}
+        <motion.button
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          onClick={handleShare}
+          className="absolute top-4 right-4 p-2 rounded-full 
+                   bg-gray-800/50 backdrop-blur-sm 
+                   border border-gray-700/30 text-white
+                   hover:bg-gray-700/70 hover:border-blue-500/30 
+                   transition-all duration-200 shadow-lg z-10"
+          aria-label="Share portfolio"
+        >
+          <HiShare className="w-5 h-5" />
+        </motion.button>
       </div>
 
       {/* Profile Content */}
