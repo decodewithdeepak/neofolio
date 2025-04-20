@@ -40,34 +40,11 @@
     background-color: rgba(17, 24, 39, 0.9) !important; /* gray-900 with opacity */
   }
 
-  /* Simplify gradients on mobile */
-  .bg-gradient-to-r,
-  .bg-gradient-to-l,
-  .bg-gradient-to-br,
-  .bg-gradient-to-bl,
-  .bg-gradient-to-tr,
-  .bg-gradient-to-tl {
-    background-image: none !important;
-    background-color: rgba(17, 24, 39, 0.8) !important; /* gray-900 with opacity */
-  }
-
   /* Disable all animations */
   .animate-blob,
   .animate-pulse,
   .animate-spin:not(.loading-spinner) {
     animation: none !important;
-  }
-
-  /* Use solid borders instead of gradient borders */
-  .border-gradient {
-    border: 1px solid rgba(59, 130, 246, 0.5) !important; /* blue-500 with opacity */
-    background-image: none !important;
-  }
-
-  /* Lower quality shadows */
-  .shadow-lg, .shadow-xl, .shadow-2xl {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
-                0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
   }
 
   /* Optimize all transitions to use only transform and opacity */
