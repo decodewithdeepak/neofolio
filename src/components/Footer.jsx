@@ -5,7 +5,7 @@ import { MdBugReport } from 'react-icons/md';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
   const handleReportBug = () => {
     window.location.href = 'mailto:deepakmodidev@gmail.com?subject=Bug/Suggestion for neofolio.vercel.app';
   };
@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="backdrop-blur-xl bg-gray-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -31,7 +31,10 @@ const Footer = () => {
                   <span className="text-white">Folio</span>
                 </span>
                 <span className="flex items-center gap-2 text-sm text-gray-400 mt-1">
-                  Crafted with ❤️ by <a href="https://deepakmodi.vercel.app" target="_blank" className="text-purple-400 hover:underline">Deepak Modi</a>
+                  Crafted with           
+                  <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+                    ♥️
+                  </span> by <a href="https://deepakmodi.vercel.app" target="_blank" className="text-gray-400 hover:underline">Deepak Modi</a>
                 </span>
               </div>
             </motion.div>
