@@ -16,26 +16,26 @@ const AchievementCard = ({ achievements = [] }) => {
 
   return (
     <CardContainer title="Achievements">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="flex flex-col gap-6">
         {achievements.map((achievement, index) => {
           const AchievementIcon = getAchievementIcon(achievement);
-          
+
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group relative overflow-visible rounded-xl bg-gradient-to-br 
+              whileHover={{ x: -5 }}
+              className="group relative flex items-center overflow-visible rounded-xl bg-gradient-to-br 
                      from-white/40 to-white/10 dark:from-gray-800/40 dark:to-gray-800/10 
                      border border-white/20 dark:border-gray-700/20 
                      hover:border-blue-500/20 dark:hover:border-blue-500/20
                      transition-all duration-300 mt-6"
             >
               {/* Enhanced Achievement Icon */}
-              <div className="absolute -top-6 -right-6 z-20">
+              <div className="flex-shrink-0 mr-6">
                 <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500 to-orange-500 
@@ -55,9 +55,9 @@ const AchievementCard = ({ achievements = [] }) => {
                 </motion.div>
               </div>
 
-              <div className="p-6 space-y-4">
+              <div className="flex-1 p-4 space-y-4">
                 {/* Title */}
-                <h3 className="pr-12 text-xl font-semibold text-gray-900 dark:text-white 
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white 
                            group-hover:text-transparent group-hover:bg-clip-text
                            group-hover:bg-gradient-to-r group-hover:from-blue-500 
                            group-hover:to-purple-500 transition-colors duration-300">
@@ -99,11 +99,6 @@ const AchievementCard = ({ achievements = [] }) => {
                     <HiExternalLink className="w-4 h-4" />
                   </motion.a>
                 )}
-
-                {/* Decorative Elements */}
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r 
-                           from-transparent via-blue-500/20 to-transparent 
-                           group-hover:via-blue-500/40 transition-colors duration-300" />
               </div>
             </motion.div>
           );

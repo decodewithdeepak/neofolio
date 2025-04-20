@@ -43,45 +43,45 @@ const ActivityCard = ({ githubUsername, leetcodeUsername }) => {
 
     return (
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="p-6 rounded-xl bg-white/5 border border-white/10 space-y-4"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="p-6 rounded-xl bg-white/5 border border-white/10 space-y-4"
       >
-        {/* Header with Link */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <SiGithub className="w-6 h-6 text-gray-400" />
-            <h3 className="text-lg font-semibold text-white">GitHub Stats</h3>
-          </div>
-          <a
-            href={`https://github.com/${githubUsername}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-gray-400 hover:text-white transition-colors"
-          >
-            @{githubUsername}
-          </a>
+      {/* Header with Link */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+        <SiGithub className="w-6 h-6 text-gray-400" />
+        <h3 className="text-lg font-semibold text-white">GitHub Stats</h3>
+        </div>
+        <a
+        href={`https://github.com/${githubUsername}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm text-gray-400 hover:text-white transition-colors"
+        >
+        @{githubUsername}
+        </a>
+      </div>
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Main Stats Card */}
+        <div className="relative overflow-hidden">
+        <img
+          src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&hide_border=true&theme=midnight-purple&bg_color=0D1117&title_color=A78BFA&icon_color=9F7AEA&text_color=FFFFFF&include_all_commits=true`}
+          alt="GitHub Stats"
+          className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
+        />
         </div>
         
-        <div className="space-y-6">
-          {/* Main Stats Card - More Compact */}
-          <div className="relative overflow-hidden">
-            <img
-              src={`https://github-readme-stats.vercel.app/api?username=${githubUsername}&show_icons=true&hide_border=true&theme=midnight-purple&bg_color=0D1117&title_color=A78BFA&icon_color=9F7AEA&text_color=FFFFFF&include_all_commits=true`}
-              alt="GitHub Stats"
-              className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
-            />
-          </div>
-          
-          {/* Streak Stats with Enhanced Design */}
-          <div className="relative overflow-hidden">
-            <img
-              src={`https://github-readme-streak-stats.herokuapp.com/?user=${githubUsername}&theme=transparent&hide_border=true&ring=58a6ff&fire=58a6ff&currStreakLabel=ffffff&sideLabels=ffffff&card_width=450`}
-              alt="GitHub Streak"
-              className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
-            />
-          </div>
+        {/* Streak Stats */}
+        <div className="relative overflow-hidden">
+        <img
+          src={`https://github-readme-streak-stats.herokuapp.com/?user=${githubUsername}&theme=transparent&hide_border=true&ring=58a6ff&fire=58a6ff&currStreakLabel=ffffff&sideLabels=ffffff&card_width=450`}
+          alt="GitHub Streak"
+          className="w-full max-w-md mx-auto rounded-lg backdrop-blur-sm"
+        />
         </div>
+      </div>
       </motion.div>
     );
   };
