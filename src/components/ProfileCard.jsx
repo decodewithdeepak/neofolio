@@ -5,31 +5,40 @@ import { SiLeetcode, SiGeeksforgeeks } from 'react-icons/si';
 import { HiMail, HiSparkles, HiLocationMarker, HiLink, HiShare } from 'react-icons/hi';
 import CardContainer from './CardContainer';
 
+// GitHub
+// LinkedIn
+// LeetCode
+// Twitter
+// Website
+// Mail
+// Hackerrank
+// Coding
+// GeeksForGeeks
+// Other
+
 const getSocialIcon = (name) => {
   if (!name) return null;
   switch (name.toLowerCase()) {
     case 'github':
-      return <FaGithub className="w-5 h-5" />;
+      return <FaGithub className="w-5 h-5 text-[#e0e0e0]" />; // Grayish white
     case 'linkedin':
-      return <FaLinkedin className="w-5 h-5" />;
-    case 'twitter':
-      return <FaTwitter className="w-5 h-5" />;
-    case 'website':
-      return <FaGlobe className="w-5 h-5" />;
-    case 'mail':
-      return <HiMail className="w-5 h-5" />;
+      return <FaLinkedin className="w-5 h-5 text-[#0077ff]" />; // Bright LinkedIn blue
     case 'leetcode':
-      return <SiLeetcode className="w-5 h-5 text-[#FFA116]" />;
-    case 'geeksforgeeks':
-      return <FaGlobe className="w-5 h-5 text-[#2F8D46]" />;
-    case 'gfg':
-      return <SiGeeksforgeeks className="w-5 h-5 text-[#2F8D46]" />;
+      return <SiLeetcode className="w-5 h-5 text-[#ffb800]" />; // Punchy yellow
+    case 'twitter':
+      return <FaTwitter className="w-5 h-5 text-[#1da1f2]" />; // Twitter blue
+    case 'website':
+      return <FaGlobe className="w-5 h-5 text-[#00e0ff]" />; // Neon cyan
+    case 'mail':
+      return <HiMail className="w-5 h-5 text-[#ff1744]" />; // Punchy red
     case 'hackerrank':
-      return <FaHackerrank className="w-5 h-5 text-[#00EA64]" />;
+      return <FaHackerrank className="w-5 h-5 text-[#00ff7f]" />; // Neon green
+    case 'geeksforgeeks':
+      return <SiGeeksforgeeks className="w-5 h-5 text-[#00c853]" />; // Punchy green
     case 'coding':
-      return <FaCode className="w-5 h-5" />;
+      return <FaCode className="w-5 h-5 text-[#ff9100]" />; // Bright orange
     default:
-      return null;
+      return <HiLink className="w-5 h-5 text-[#ff80ab]" />; // Punchy pink
   }
 };
 
@@ -83,7 +92,7 @@ const ProfileCard = ({ profile = {} }) => {
           transition={{ duration: 1 }}
           className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/80"
         />
-        
+
         {/* Share Button */}
         <motion.button
           initial={{ opacity: 0, y: -10 }}
@@ -126,7 +135,7 @@ const ProfileCard = ({ profile = {} }) => {
                            rounded-full blur-xl opacity-75 animate-pulse" />
               {/* Avatar Image */}
               <div className="relative w-32 h-32">
-                <img 
+                <img
                   src={avatar || `https://ui-avatars.com/api/?name=${name}`}
                   alt={name}
                   className="w-full h-full rounded-full object-cover border-4 
